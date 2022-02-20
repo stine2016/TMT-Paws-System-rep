@@ -3,14 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1945" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/bg_editor.xml" value="0.1945" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/bg_editor2.xml" value="0.1945" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/btn_gradient_style.xml" value="0.1" />
+        <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1945" />
+        <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/onboarding_indicator_active.xml" value="0.1945" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/onboarding_indicator_inactive.xml" value="0.1945" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/drawable/round_btn.xml" value="0.1945" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/font/poppins_light.xml" value="0.234375" />
+        <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout-w1240dp/activity_login2.xml" value="0.13119143239625167" />
+        <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout-w936dp/activity_login2.xml" value="0.1287568306010929" />
+        <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout/activity_home.xml" value="0.21" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout/activity_login.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout/activity_login2.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout/activity_login_signup.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/14 something else/Documents/Ghost Projects/TMT Paws System/app/src/main/res/layout/activity_splashscreen.xml" value="0.18" />
