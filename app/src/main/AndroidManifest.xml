@@ -10,12 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tmtpawssyetm">
         <activity
-            android:name=".ui.login.LoginActivity2"
+            android:name=".Settings"
             android:exported="false"
-            android:label="@string/title_activity_login2" />
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".Notes"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".Notification"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".Profile"
+            android:exported="false"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".LoginSignupActivity"
             android:exported="false" />

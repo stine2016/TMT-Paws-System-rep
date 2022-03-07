@@ -10,43 +10,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-
-public class HomeActivity extends AppCompatActivity {
+public class Notes extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView btnMenu;
     RecyclerView recyclerView;
-    static ArrayList<String> arrayList = new ArrayList<>();
-    MainAdapter adapter;
-
-    public static void closeDrawer(DrawerLayout drawerLayout) {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_notes);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         btnMenu = findViewById(R.id.imgMenu);
         recyclerView = findViewById(R.id.recycler_view);
 
-        arrayList.clear();
-
-        arrayList.add("Home");
-        arrayList.add("Profile");
-        arrayList.add("Notification");
-        arrayList.add("Notes");
-        arrayList.add("Settings");
-        arrayList.add("Logout");
-
-        adapter = new MainAdapter(this, arrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+
+        recyclerView.setAdapter(new MainAdapter(this,HomeActivity.arrayList));
 
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,12 +35,11 @@ public class HomeActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        closeDrawer(drawerLayout);
+        HomeActivity.closeDrawer(drawerLayout);
     }
 }
