@@ -69,15 +69,16 @@
             android:layout_height="65dp"
             android:layout_marginBottom="15dp"
             android:backgroundTint="#15B5B0"
-            android:textSize="20sp"
             android:text="Login"
             android:textColor="#E5E4E4"
-            app:layout_constraintVertical_bias=".3"
+            android:textSize="20sp"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password" />
+            app:layout_constraintTop_toBottomOf="@id/password"
+            app:layout_constraintVertical_bias="0.297" />
 
         <TextView
             android:id="@+id/textView2"

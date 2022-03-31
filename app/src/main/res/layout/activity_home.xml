@@ -14,15 +14,6 @@
 
         <include
             layout="@layout/main_toolbar"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Home"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
-
     </LinearLayout>
 
     <RelativeLayout
@@ -34,6 +25,8 @@
         <include
             layout="@layout/main_nav_drawer"/>
     </RelativeLayout>
+
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
