@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 public class LoginActivity extends AppCompatActivity {
 
     MaterialButton login_btn;
+    MaterialButton register_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +21,20 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         login_btn = findViewById(R.id.btnLogin);
+        register_btn = findViewById(R.id.btnRegister);
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LoginSignupActivity.class));
+                finish();
+            }
+        });
+
+        register_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
                 finish();
             }
         });

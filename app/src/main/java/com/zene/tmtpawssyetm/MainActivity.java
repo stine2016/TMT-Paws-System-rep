@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(), LoginSignupActivity.class));
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 }
             }

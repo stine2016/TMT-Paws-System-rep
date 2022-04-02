@@ -1,5 +1,7 @@
 package com.zene.tmtpawssyetm;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -28,6 +30,7 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private Button btnTemperature;
+    private Button btnCamera;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -67,6 +70,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         btnTemperature = view.findViewById(R.id.btnTemperature);
+        btnCamera = view.findViewById(R.id.btnCamera);
 
         btnTemperature.setOnClickListener(new View.OnClickListener() {
 
@@ -80,6 +84,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoUrl("http://192.168.55.167");
+            }
+        });
+
         return view;
+    }
+
+    private void gotoUrl(String s) {
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 }
