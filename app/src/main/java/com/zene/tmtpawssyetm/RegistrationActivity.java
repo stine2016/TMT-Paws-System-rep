@@ -80,7 +80,7 @@ public class RegistrationActivity<email> extends AppCompatActivity {
         // data in our object class.
         userInfo.setEmail(email);
         userInfo.setPassword(password);
-        userInfo.setEsp32(esp32);
+        userInfo.setName(esp32);
         userInfo.setSerialnumber(serialnumber);
 
 

@@ -4,12 +4,12 @@
     <item android:title="Home"
         android:icon="@drawable/ic_baseline_home_24"
         android:id="@+id/home"/>
+    <item android:title="Camera"
+        android:icon="@drawable/ic_baseline_linked_camera_24"
+        android:id="@+id/camera"/>
     <item android:title="Notes"
         android:icon="@drawable/ic_baseline_note_add_24"
         android:id="@+id/notes"/>
-    <item android:title="Profile"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:id="@+id/profile"/>
     <item android:title="Settings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:id="@+id/settings"/>

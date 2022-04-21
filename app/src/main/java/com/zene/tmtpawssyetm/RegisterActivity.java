@@ -16,12 +16,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText emailTextView, passwordTextView;
+    private EditText emailTextView, passwordTextView, serialnumberTextView;
     private Button Btn;
     private ProgressBar progressbar;
     private FirebaseAuth mAuth;
+
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    UserInfo userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,15 +46,57 @@ public class RegisterActivity extends AppCompatActivity {
         // initialising all views through id defined above
         emailTextView = findViewById(R.id.email);
         passwordTextView = findViewById(R.id.passwd);
-        Btn = findViewById(R.id.btnRegister);
+        Btn = findViewById(R.id.btnregister);
         progressbar = findViewById(R.id.progressbar);
+        serialnumberTextView = findViewById(R.id.serialnumber);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("userInfo");
+
+        userInfo = new UserInfo();
 
         // Set on Click Listener on Registration button
         Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
+                String email1 = emailTextView.getText().toString();
+                String password1 = passwordTextView.getText().toString();
+                String serialnumber1 = serialnumberTextView.getText().toString();
+
                 registerNewUser();
+                addDataToFirebase(email1, password1, serialnumber1);
+            }
+        });
+    }
+
+    private void addDataToFirebase(String email, String password, String serialnumber) {
+        // below 3 lines of code is used to set
+        // data in our object class.
+        userInfo.setEmail(email);
+        userInfo.setPassword(password);
+        userInfo.setSerialnumber(serialnumber);
+
+
+        // we are use add value event listener method
+        // which is called with database reference.
+        databaseReference.addValueEventListener(new  ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // inside the method of on Data change we are setting
+                // our object class to our database reference.
+                // data base reference will sends data to firebase.
+                databaseReference.child(serialnumber).setValue(userInfo);
+
+                // after adding this data we are showing toast message.
+                Toast.makeText(RegisterActivity.this, "data added", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // if the data is not added or it is cancelled then
+                // we are displaying a failure toast message.
+                Toast.makeText(RegisterActivity.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -95,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
                             // if the user created intent to login activity
                             Intent intent
                                     = new Intent(RegisterActivity.this,
-                                    LoginActivity.class);
+                                    LoginSignupActivity.class);
                             startActivity(intent);
                         }
                         else {

@@ -6,7 +6,7 @@ public class UserInfo {
 
     private String Password;
 
-    private String esp32;
+    private String name;
 
     private String serialnumber;
 
@@ -30,12 +30,12 @@ public class UserInfo {
         this.Password = Password;
 
     }
-    public String getEsp32() {
-        return esp32;
+    public String getName() {
+        return name;
     }
 
-    public void setEsp32(String esp32){
-        this.esp32 = esp32;
+    public void setName(String name){
+        this.name = name;
 
     }
     public String getSerialnumber() {

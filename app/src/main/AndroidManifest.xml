@@ -11,8 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round_hatdog"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tmtpawssyetm">
+<!--        <activity-->
+<!--            android:name=".walkthrough"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".RegisterActivity_v1"
+            android:name=".InfraredView"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".RegisterActivityV2"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivityV2"
             android:exported="false" />
         <activity
             android:name=".RegistrationActivity"
@@ -31,35 +44,25 @@
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".Settings"
-            android:exported="false"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".Notes"
-            android:exported="false"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".Notification"
-            android:exported="false"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".Profile"
-            android:exported="false"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".LoginSignupActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".MainActivity" -->
-        <!-- android:exported="false" /> -->
-        <activity
+            android:exported="false" />
+         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+        <activity
+            android:name=".walkthrough"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

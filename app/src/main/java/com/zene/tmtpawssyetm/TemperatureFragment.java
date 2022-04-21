@@ -2,11 +2,23 @@ package com.zene.tmtpawssyetm;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +26,13 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class TemperatureFragment extends Fragment {
+
+    MaterialButton btable, bgraph;
+    TextView temperature1, temperature2;
+    FirebaseDatabase firebaseDatabase;
+    FirebaseUser user;
+    DatabaseReference databaseReference, databaseReference2;
+    FirebaseAuth fAuth;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +78,84 @@ public class TemperatureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_temperature, container, false);
+        View view = inflater.inflate(R.layout.fragment_temperature, container, false);
+
+        btable = view.findViewById(R.id.btnTable);
+        bgraph = view.findViewById(R.id.btnGraph);
+        temperature1 = view.findViewById(R.id.temperature1);
+        temperature2 = view.findViewById(R.id.temperature2);
+
+        isUser();
+
+        btable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TemperatureTable temperatureTable = new TemperatureTable();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), temperatureTable, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        bgraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TemperatureGraph temperatureGraph = new TemperatureGraph();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), temperatureGraph, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+        return view;
+    }
+
+    private void isUser() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        user = fAuth.getCurrentUser();
+
+        databaseReference = firebaseDatabase.getReference("userInfo").child(user.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String serialnumber = snapshot.child("serialnumber").getValue(String.class);
+
+                    databaseReference2 = firebaseDatabase.getReference("TMTPawsUserData").child(serialnumber);
+
+                    databaseReference2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Float temperatureA = snapshot.child("thermal").child("28x").getValue(Float.class);
+                            Float temperatureB = snapshot.child("thermal").child("29x").getValue(Float.class);
+                            Float temperatureC = snapshot.child("thermal").child("36x").getValue(Float.class);
+                            Float temperatureD = snapshot.child("thermal").child("37x").getValue(Float.class);
+
+//                            Float tempValue = (Float.parseFloat(temperatureA) + Float.parseFloat(temperatureB) + Float.parseFloat(temperatureC) + Float.parseFloat(temperatureD))/4;
+                            Float tempValue = (temperatureA+temperatureB+temperatureC+temperatureD)/4;
+                            String aveTemp = Float.toString(tempValue);
+                            temperature1.setText(aveTemp + "°");
+                            temperature2.setText(aveTemp + "°");
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(getContext(), "Intruder Alert!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

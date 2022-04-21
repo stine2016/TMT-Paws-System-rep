@@ -43,22 +43,26 @@
             android:id="@+id/email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".8"
-            app:layout_constraintVertical_bias=".3"
-            app:layout_constraintHorizontal_bias=".5"
             android:hint="Email or Mobile Number"
+            android:minHeight="48dp"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".3"
+            app:layout_constraintWidth_percent=".8" />
+
         <EditText
             android:id="@+id/serialnumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:hint="Serial Number"
+            android:minHeight="48dp"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -68,14 +72,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".8"
-            android:layout_marginTop="20dp"/>
+            app:layout_constraintWidth_percent=".8" />
 
         <EditText
-            android:id="@+id/ipaddress"
+            android:id="@+id/password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="ESP32 Cam Ip address"
+            android:hint="Password"
+            android:minHeight="48dp"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -84,26 +88,8 @@
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/serialnumber"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".8"
-            android:layout_marginTop="20dp"/>
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ipaddress"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".8"
-            android:layout_marginTop="20dp"/>
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintWidth_percent=".8" />
 
 
         <com.google.android.material.button.MaterialButton

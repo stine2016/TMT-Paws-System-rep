@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,5 +129,11 @@ public class MainActivity extends AppCompatActivity {
         }else {
             buttonOnboardingAction.setText("Next");
         }
+    }
+
+    private boolean isOpenAlread() {
+        SharedPreferences sharedPreferences=getSharedPreferences("slide",MODE_PRIVATE);
+        boolean result=sharedPreferences.getBoolean("slide",false);
+        return result;
     }
 }

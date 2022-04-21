@@ -38,11 +38,11 @@ public class DashboardActivity extends AppCompatActivity {
                 case R.id.home:
                     selectedFragment = new HomeFragment();
                     break;
+                case R.id.camera:
+                    selectedFragment = new CameraView();
+                    break;
                 case R.id.notes:
                     selectedFragment = new NotesFragment();
-                    break;
-                case R.id.profile:
-                    selectedFragment = new ProfileFragment();
                     break;
                 case R.id.settings:
                     selectedFragment = new SettingsFragment();

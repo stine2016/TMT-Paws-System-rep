@@ -10,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +34,8 @@ public class HomeFragment extends Fragment {
 
     private Button btnTemperature;
     private Button btnCamera;
+    private Button btnCommunity;
+    CircleImageView circleImageView;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -71,6 +76,8 @@ public class HomeFragment extends Fragment {
 
         btnTemperature = view.findViewById(R.id.btnTemperature);
         btnCamera = view.findViewById(R.id.btnCamera);
+        circleImageView = view.findViewById(R.id.profile);
+        btnCommunity = view.findViewById(R.id.btnCommunity);
 
         btnTemperature.setOnClickListener(new View.OnClickListener() {
 
@@ -87,10 +94,32 @@ public class HomeFragment extends Fragment {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gotoUrl("http://192.168.55.167");
+//                gotoUrl("http://192.168.55.167");
+                CameraView cameraView = new CameraView();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), cameraView, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProfileFragment profileFragment = new ProfileFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), profileFragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        btnCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoUrl("http://discord.com");
+            }
+        });
         return view;
     }
 
