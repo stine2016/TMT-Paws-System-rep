@@ -129,16 +129,11 @@ public class TemperatureFragment extends Fragment {
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            Float temperatureA = snapshot.child("thermal").child("28x").getValue(Float.class);
-                            Float temperatureB = snapshot.child("thermal").child("29x").getValue(Float.class);
-                            Float temperatureC = snapshot.child("thermal").child("36x").getValue(Float.class);
-                            Float temperatureD = snapshot.child("thermal").child("37x").getValue(Float.class);
+                            Float temperature = snapshot.child("temperature").getValue(Float.class);
 
-//                            Float tempValue = (Float.parseFloat(temperatureA) + Float.parseFloat(temperatureB) + Float.parseFloat(temperatureC) + Float.parseFloat(temperatureD))/4;
-                            Float tempValue = (temperatureA+temperatureB+temperatureC+temperatureD)/4;
-                            String aveTemp = Float.toString(tempValue);
-                            temperature1.setText(aveTemp + "°");
-                            temperature2.setText(aveTemp + "°");
+                            String Temp = Float.toString(temperature);
+                            temperature1.setText(Temp + "°");
+                            temperature2.setText(Temp + "°");
                         }
 
                         @Override

@@ -87,34 +87,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnTempChecking"
-                    android:layout_width="320dp"
-                    android:layout_height="65dp"
-                    android:layout_centerHorizontal="true"
-                    android:backgroundTint="#15B5B0"
-                    android:text="Manual Checking"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:cornerRadius="20dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/btnTempChecking"-->
+<!--                    android:layout_width="320dp"-->
+<!--                    android:layout_height="65dp"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:backgroundTint="#15B5B0"-->
+<!--                    android:text="Manual Checking"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="20sp"-->
+<!--                    app:cornerRadius="20dp" />-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnTable"
-                    android:layout_width="150dp"
-                    android:layout_height="65dp"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:backgroundTint="#15B5B0"
-                    android:text="Table"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:cornerRadius="20dp"
-                    android:layout_alignParentLeft="true"/>
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/btnTable"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="65dp"-->
+<!--                    android:layout_alignParentLeft="true"-->
+<!--                    android:layout_marginLeft="30dp"-->
+<!--                    android:layout_marginTop="80dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:backgroundTint="#15B5B0"-->
+<!--                    android:text="Table"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="20sp"-->
+<!--                    app:cornerRadius="20dp" />-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnGraph"
-                    android:layout_width="150dp"
+                    android:layout_width="320dp"
                     android:layout_height="65dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="80dp"

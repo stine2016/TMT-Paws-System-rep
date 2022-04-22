@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +48,7 @@ public class CameraView extends Fragment {
     FirebaseUser user;
     DatabaseReference databaseReference, databaseReference2;
     FirebaseAuth fAuth;
+    MaterialButton localCamera;
 
     public CameraView() {
         // Required empty public constructor
@@ -85,12 +87,14 @@ public class CameraView extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_camera_view, container, false);
 
-        LocalDateTime myDateObj = LocalDateTime.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
-        String formattedDate = myDateObj.format(myFormatObj);
+        localCamera = view.findViewById(R.id.localCamera);
 
-        dateTime.setText(formattedDate);
-
+        localCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isUser();
+            }
+        });
         return view;
     }
 
