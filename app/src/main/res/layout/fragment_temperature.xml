@@ -98,30 +98,29 @@
 <!--                    android:textSize="20sp"-->
 <!--                    app:cornerRadius="20dp" />-->
 
-<!--                <com.google.android.material.button.MaterialButton-->
-<!--                    android:id="@+id/btnTable"-->
-<!--                    android:layout_width="150dp"-->
-<!--                    android:layout_height="65dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginLeft="30dp"-->
-<!--                    android:layout_marginTop="80dp"-->
-<!--                    android:layout_marginBottom="15dp"-->
-<!--                    android:backgroundTint="#15B5B0"-->
-<!--                    android:text="Table"-->
-<!--                    android:textColor="#000000"-->
-<!--                    android:textSize="20sp"-->
-<!--                    app:cornerRadius="20dp" />-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnThermal"
+                    android:layout_width="320dp"
+                    android:layout_height="65dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:backgroundTint="#15B5B0"
+                    android:text="Thermal View"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:cornerRadius="20dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnGraph"
                     android:layout_width="320dp"
                     android:layout_height="65dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="80dp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginBottom="15dp"
                     android:backgroundTint="#15B5B0"
                     android:text="Graph"
+                    android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     app:cornerRadius="20dp" />

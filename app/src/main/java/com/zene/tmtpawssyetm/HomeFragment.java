@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment {
         btnCommunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gotoUrl("http://discord.com");
+                gotoUrl("https://discord.gg/jMGXsnSyMq");
             }
         });
 

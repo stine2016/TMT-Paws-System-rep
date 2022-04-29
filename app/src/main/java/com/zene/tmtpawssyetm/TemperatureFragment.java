@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class TemperatureFragment extends Fragment {
 
-    MaterialButton btable, bgraph;
+    MaterialButton btnThermal, bgraph;
     TextView temperature1, temperature2;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
@@ -80,18 +80,19 @@ public class TemperatureFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_temperature, container, false);
 
+        btnThermal = view.findViewById(R.id.btnThermal);
         bgraph = view.findViewById(R.id.btnGraph);
         temperature1 = view.findViewById(R.id.temperature1);
         temperature2 = view.findViewById(R.id.temperature2);
 
         isUser();
 
-        btable.setOnClickListener(new View.OnClickListener() {
+        btnThermal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TemperatureTable temperatureTable = new TemperatureTable();
+                InfraredFragment infraredFragment = new InfraredFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(((ViewGroup)getView().getParent()).getId(), temperatureTable, "findThisFragment")
+                        .replace(((ViewGroup)getView().getParent()).getId(), infraredFragment, "findThisFragment")
                         .addToBackStack(null)
                         .commit();
             }
@@ -123,7 +124,7 @@ public class TemperatureFragment extends Fragment {
                 if(snapshot.exists()){
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
-                    databaseReference2 = firebaseDatabase.getReference("ChartValues").child(serialnumber);
+                    databaseReference2 = firebaseDatabase.getReference("SensorData").child(serialnumber);
 
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override

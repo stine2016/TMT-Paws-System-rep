@@ -57,6 +57,7 @@ public class TemperatureGraph extends Fragment {
     GraphView graphView;
     LineGraphSeries series;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
+    int counter = 0;
 //    LineDataSet lineDataSet = new LineDataSet(null,null);
 //    ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
 //    LineData lineData;
@@ -111,26 +112,29 @@ public class TemperatureGraph extends Fragment {
         series = new LineGraphSeries();
         graphView.addSeries(series);
 
-        graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        user = fAuth.getCurrentUser();
+
+        databaseReference = firebaseDatabase.getReference("userInfo").child(user.getUid());
+
+        graphView.getGridLabelRenderer().setNumHorizontalLabels(6);
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
             public String formatLabel(double value, boolean isValueX) {
                 if(isValueX){
                     return simpleDateFormat.format(new Date((long) value));
                 }else {
-                    return super.formatLabel(value, isValueX);
+                    return super.formatLabel(value, false);
                 }
             }
         });
         return view;
     }
 
-    private void isUser() {
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        fAuth = FirebaseAuth.getInstance();
-        user = fAuth.getCurrentUser();
-
-        databaseReference = firebaseDatabase.getReference("userInfo").child(user.getUid());
+    @Override
+    public void onStart() {
+        super.onStart();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -148,10 +152,10 @@ public class TemperatureGraph extends Fragment {
                             for(DataSnapshot myDataSnapshot:snapshot.getChildren()){
                                 PointValues pointValues = myDataSnapshot.getValue(PointValues.class);
 
-                                Date d = new Date(pointValues.getTimestamp());
+//                                Date d = new Date(pointValues.getTimestamp());
 //                                String date = new SimpleDateFormat("dd-MM", Locale.getDefault()).format(d);
 
-                                dp[index] = new DataPoint(d, pointValues.getCaltemp());
+                                dp[index] = new DataPoint(pointValues.getTs(), pointValues.getCaltemp());
                                 index++;
                             }
 
@@ -182,13 +186,6 @@ public class TemperatureGraph extends Fragment {
                 Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-//        isUser();
     }
 
     //    private void isUser() {

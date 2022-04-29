@@ -112,8 +112,8 @@ public class InfraredFragment extends Fragment {
                 if(snapshot.exists()){
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
-                    databaseReference2 = firebaseDatabase.getReference("TMTPawsUserData").child(serialnumber).child("thermal");
-                    databaseReference3 = firebaseDatabase.getReference("ChartValues").child(serialnumber);
+                    databaseReference2 = firebaseDatabase.getReference("ThermalData").child(serialnumber);
+                    databaseReference3 = firebaseDatabase.getReference("SensorData").child(serialnumber);
 
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -139,7 +139,7 @@ public class InfraredFragment extends Fragment {
                             Float distance = snapshot.child("distance").getValue(Float.class);
 
                             String dist = Float.toString(distance);
-                            distanceView.setText(dist);
+                            distanceView.setText("Distance: " + dist);
                         }
 
                         @Override
