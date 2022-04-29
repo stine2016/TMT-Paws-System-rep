@@ -151,7 +151,7 @@ public class TemperatureGraph extends Fragment {
                                 Date d = new Date(pointValues.getTimestamp());
 //                                String date = new SimpleDateFormat("dd-MM", Locale.getDefault()).format(d);
 
-                                dp[index] = new DataPoint(pointValues.getTimestamp(), pointValues.getTemperature());
+                                dp[index] = new DataPoint(d, pointValues.getCaltemp());
                                 index++;
                             }
 
@@ -164,12 +164,11 @@ public class TemperatureGraph extends Fragment {
 //                            else{
 //                            }
 
-
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -180,7 +179,7 @@ public class TemperatureGraph extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -189,8 +188,9 @@ public class TemperatureGraph extends Fragment {
     public void onStart() {
         super.onStart();
 
-        isUser();
+//        isUser();
     }
+
     //    private void isUser() {
 //        firebaseDatabase = FirebaseDatabase.getInstance();
 //        fAuth = FirebaseAuth.getInstance();

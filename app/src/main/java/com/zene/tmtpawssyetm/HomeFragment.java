@@ -35,6 +35,7 @@ public class HomeFragment extends Fragment {
     private Button btnTemperature;
     private Button btnCamera;
     private Button btnCommunity;
+    private Button btnNotification;
     CircleImageView circleImageView;
 
     public HomeFragment() {
@@ -78,6 +79,7 @@ public class HomeFragment extends Fragment {
         btnCamera = view.findViewById(R.id.btnCamera);
         circleImageView = view.findViewById(R.id.profile);
         btnCommunity = view.findViewById(R.id.btnCommunity);
+        btnNotification = view.findViewById(R.id.btnNotification);
 
         btnTemperature.setOnClickListener(new View.OnClickListener() {
 
@@ -118,6 +120,17 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 gotoUrl("http://discord.com");
+            }
+        });
+
+        btnNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InfraredFragment infraredFragment = new InfraredFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), infraredFragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         return view;

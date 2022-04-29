@@ -1,23 +1,23 @@
 package com.zene.tmtpawssyetm;
 
 public class PointValues {
-    float temperature;
+    float Caltemp;
     long timestamp;
 
-    public PointValues(float temperature, long timestamp){
-        this.temperature = temperature;
+    public PointValues(float Caltemp, long timestamp){
+        this.Caltemp = Caltemp;
         this.timestamp = timestamp;
     }
 
     public PointValues(){
     }
 
-    public float getTemperature() {
-        return temperature;
+    public float getCaltemp() {
+        return Caltemp;
     }
 
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
+    public void setCaltemp(float Caltemp) {
+        this.Caltemp = Caltemp;
     }
 
     public long getTimestamp() {

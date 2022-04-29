@@ -80,7 +80,6 @@ public class TemperatureFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_temperature, container, false);
 
-        btable = view.findViewById(R.id.btnTable);
         bgraph = view.findViewById(R.id.btnGraph);
         temperature1 = view.findViewById(R.id.temperature1);
         temperature2 = view.findViewById(R.id.temperature2);
@@ -124,12 +123,12 @@ public class TemperatureFragment extends Fragment {
                 if(snapshot.exists()){
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
-                    databaseReference2 = firebaseDatabase.getReference("TMTPawsUserData").child(serialnumber);
+                    databaseReference2 = firebaseDatabase.getReference("ChartValues").child(serialnumber);
 
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            Float temperature = snapshot.child("temperature").getValue(Float.class);
+                            Float temperature = snapshot.child("Caltemp").getValue(Float.class);
 
                             String Temp = Float.toString(temperature);
                             temperature1.setText(Temp + "°");
@@ -138,7 +137,7 @@ public class TemperatureFragment extends Fragment {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -149,7 +148,7 @@ public class TemperatureFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
             }
         });
     }
