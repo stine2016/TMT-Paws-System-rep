@@ -1,4 +1,4 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.zene.tmtpawssyetm.Model.Note;
+import com.zene.tmtpawssyetm.R;
 
 public class RegistrationActivity<email> extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class RegistrationActivity<email> extends AppCompatActivity {
 
     DatabaseReference databaseReference;
 
-    UserInfo userInfo;
+    Note.UserInfo userInfo;
 
     int num = 0;
 
@@ -57,7 +58,7 @@ public class RegistrationActivity<email> extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("userInfo");
 
-        userInfo = new UserInfo();
+        userInfo = new Note.UserInfo();
 
         // Set on Click Listener on Registration button
         Btn.setOnClickListener(new View.OnClickListener() {

@@ -1,4 +1,4 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 
 import androidx.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.zene.tmtpawssyetm.R;
 import com.zene.tmtpawssyetm.databinding.ActivityMainBinding;
 
 public class DashboardActivity extends AppCompatActivity {

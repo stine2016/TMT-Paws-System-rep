@@ -1,21 +1,19 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.zene.tmtpawssyetm.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NoteDetails#newInstance} factory method to

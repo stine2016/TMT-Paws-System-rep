@@ -1,4 +1,4 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 import static android.content.ContentValues.TAG;
 
@@ -30,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.zene.tmtpawssyetm.Model.Note;
+import com.zene.tmtpawssyetm.R;
 
 public class RegisterActivityV2 extends AppCompatActivity {
     private EditText emailTextView, phoneTextView, passwordTextView, serialnumberTextView, nameTextView;
@@ -42,7 +44,7 @@ public class RegisterActivityV2 extends AppCompatActivity {
     FirebaseUser user;
     DatabaseReference databaseReference;
 
-    TMTPawsUserData tmtPawsUserData;
+    Note.TMTPawsUserData tmtPawsUserData;
 
 
     @Override
@@ -64,7 +66,7 @@ public class RegisterActivityV2 extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = firebaseDatabase.getReference("userInfo");
 
-        tmtPawsUserData = new TMTPawsUserData();
+        tmtPawsUserData = new Note.TMTPawsUserData();
 
         Btn.setOnClickListener(new View.OnClickListener() {
             @Override

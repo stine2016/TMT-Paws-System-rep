@@ -1,4 +1,4 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.zene.tmtpawssyetm.Model.Category;
+import com.zene.tmtpawssyetm.R;
 import com.zene.tmtpawssyetm.ViewHolder.CategoryViewHolder;
 
 public class InfraredView extends AppCompatActivity {

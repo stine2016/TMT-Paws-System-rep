@@ -1,9 +1,8 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,15 +21,11 @@ import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.zene.tmtpawssyetm.Model.Infrared;
+import com.zene.tmtpawssyetm.R;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -153,7 +147,7 @@ public class TemperatureGraph extends Fragment {
                             DataPoint[] dp = new DataPoint[(int) snapshot.getChildrenCount()];
                             int index = 0;
                             for(DataSnapshot myDataSnapshot:snapshot.getChildren()){
-                                PointValues pointValues = myDataSnapshot.getValue(PointValues.class);
+                                Infrared.PointValues pointValues = myDataSnapshot.getValue(Infrared.PointValues.class);
 
 //                                Date d = new Date(pointValues.getTimestamp());
 //                                String date = new SimpleDateFormat("dd-MM", Locale.getDefault()).format(d);

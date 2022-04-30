@@ -12,10 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.zene.tmtpawssyetm.LoginActivity;
-import com.zene.tmtpawssyetm.LoginActivityV2;
+import com.zene.tmtpawssyetm.UI.LoginActivityV2;
 import com.zene.tmtpawssyetm.R;
-import com.zene.tmtpawssyetm.walkthrough;
 
 public class SlideViewPagerAdapter extends PagerAdapter {
 
@@ -67,14 +65,14 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                walkthrough.viewPager.setCurrentItem(position+1);
+                Note.walkthrough.viewPager.setCurrentItem(position+1);
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                walkthrough.viewPager.setCurrentItem(position-1);
+                Note.walkthrough.viewPager.setCurrentItem(position-1);
             }
         });
 

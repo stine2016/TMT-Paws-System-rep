@@ -1,5 +1,7 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,21 +13,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.zene.tmtpawssyetm.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
+ * Use the {@link CameraView#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class CameraView extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,13 +39,14 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView nameTextView, emailTextView, phoneTextView, serialTextView;
+    TextView dateTime;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference2;
     FirebaseAuth fAuth;
+    MaterialButton localCamera;
 
-    public ProfileFragment() {
+    public CameraView() {
         // Required empty public constructor
     }
 
@@ -52,11 +56,11 @@ public class ProfileFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
+     * @return A new instance of fragment CameraView.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
+    public static CameraView newInstance(String param1, String param2) {
+        CameraView fragment = new CameraView();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -77,15 +81,16 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_camera_view, container, false);
 
-        nameTextView = view.findViewById(R.id.name);
-        emailTextView = view.findViewById(R.id.email);
-        phoneTextView = view.findViewById(R.id.phone);
-        serialTextView = view.findViewById(R.id.serial);
+        localCamera = view.findViewById(R.id.localCamera);
 
-        isUser();
-
+        localCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isUser();
+            }
+        });
         return view;
     }
 
@@ -100,15 +105,27 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    String name = snapshot.child("name").getValue(String.class);
-                    String email = snapshot.child("email").getValue(String.class);
-                    String phonenumber = snapshot.child("phonenumber").getValue(String.class);
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
-                    nameTextView.setText(name);
-                    emailTextView.setText(email);
-                    phoneTextView.setText(phonenumber);
-                    serialTextView.setText(serialnumber);
+                    databaseReference2 = firebaseDatabase.getReference("TMTPawsUserData").child(serialnumber);
+
+                    databaseReference2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                String ipAddress = snapshot.child("camera").getValue(String.class);
+
+                                gotoUrl("http://" + ipAddress);
+                            }
+                            else{
+                                Toast.makeText(getContext(), "No Camera Detected", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 else{
                     Toast.makeText(getContext(), "Intruder Alert!!", Toast.LENGTH_SHORT).show();
@@ -120,5 +137,10 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void gotoUrl(String s) {
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 }

@@ -1,4 +1,4 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.zene.tmtpawssyetm.Model.Infrared;
+import com.zene.tmtpawssyetm.R;
+
 import java.util.List;
 
 public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>{
 
-    private List<ScreenItems> screenItems;
+    private List<Infrared.ScreenItems> screenItems;
 
-    public OnboardingAdapter(List<ScreenItems> screenItems) {
+    public OnboardingAdapter(List<Infrared.ScreenItems> screenItems) {
         this.screenItems = screenItems;
     }
 
@@ -54,7 +57,7 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
             imageOnboarding = itemView.findViewById(R.id.imageOnboarding);
         }
 
-        void setOnboardingData(ScreenItems screenItems){
+        void setOnboardingData(Infrared.ScreenItems screenItems){
             textTitle.setText(screenItems.getTitle());
             textDescription.setText(screenItems.getDescription());
             imageOnboarding.setImageResource(screenItems.getImage());

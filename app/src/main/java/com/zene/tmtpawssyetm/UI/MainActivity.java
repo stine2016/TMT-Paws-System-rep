@@ -1,4 +1,4 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -10,11 +10,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.contentcapture.ContentCaptureCondition;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.button.MaterialButton;
+import com.zene.tmtpawssyetm.Model.Infrared;
+import com.zene.tmtpawssyetm.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,19 +64,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupOnboardingItem(){
-        List<ScreenItems> screenItems = new ArrayList<>();
+        List<Infrared.ScreenItems> screenItems = new ArrayList<>();
 
-        ScreenItems nestingItems = new ScreenItems();
+        Infrared.ScreenItems nestingItems = new Infrared.ScreenItems();
         nestingItems.setTitle("Nesting data");
         nestingItems.setDescription("Show data when nesting");
         nestingItems.setImage(R.drawable.img1);
 
-        ScreenItems tempItems = new ScreenItems();
+        Infrared.ScreenItems tempItems = new Infrared.ScreenItems();
         tempItems.setTitle("Temperature data");
         tempItems.setDescription("Show temperature of the dog");
         tempItems.setImage(R.drawable.img2);
 
-        ScreenItems graphItems = new ScreenItems();
+        Infrared.ScreenItems graphItems = new Infrared.ScreenItems();
         graphItems.setTitle("Modern Graphs");
         graphItems.setDescription("Every details you want to know");
         graphItems.setImage(R.drawable.img3);

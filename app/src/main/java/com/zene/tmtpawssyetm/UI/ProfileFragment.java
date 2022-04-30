@@ -1,7 +1,5 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,18 +18,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import com.zene.tmtpawssyetm.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CameraView#newInstance} factory method to
+ * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CameraView extends Fragment {
+public class ProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,14 +36,13 @@ public class CameraView extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView dateTime;
+    TextView nameTextView, emailTextView, phoneTextView, serialTextView;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
-    DatabaseReference databaseReference, databaseReference2;
+    DatabaseReference databaseReference;
     FirebaseAuth fAuth;
-    MaterialButton localCamera;
 
-    public CameraView() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -60,11 +52,11 @@ public class CameraView extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CameraView.
+     * @return A new instance of fragment ProfileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CameraView newInstance(String param1, String param2) {
-        CameraView fragment = new CameraView();
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -85,16 +77,15 @@ public class CameraView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_camera_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        localCamera = view.findViewById(R.id.localCamera);
+        nameTextView = view.findViewById(R.id.name);
+        emailTextView = view.findViewById(R.id.email);
+        phoneTextView = view.findViewById(R.id.phone);
+        serialTextView = view.findViewById(R.id.serial);
 
-        localCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isUser();
-            }
-        });
+        isUser();
+
         return view;
     }
 
@@ -109,23 +100,15 @@ public class CameraView extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+                    String name = snapshot.child("name").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String phonenumber = snapshot.child("phonenumber").getValue(String.class);
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
-                    databaseReference2 = firebaseDatabase.getReference("TMTPawsUserData").child(serialnumber);
-
-                    databaseReference2.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String ipAddress = snapshot.child("camera").getValue(String.class);
-
-                            gotoUrl("http://" + ipAddress);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    nameTextView.setText(name);
+                    emailTextView.setText(email);
+                    phoneTextView.setText(phonenumber);
+                    serialTextView.setText(serialnumber);
                 }
                 else{
                     Toast.makeText(getContext(), "Intruder Alert!!", Toast.LENGTH_SHORT).show();
@@ -137,10 +120,5 @@ public class CameraView extends Fragment {
                 Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void gotoUrl(String s) {
-        Uri uri = Uri.parse(s);
-        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 }

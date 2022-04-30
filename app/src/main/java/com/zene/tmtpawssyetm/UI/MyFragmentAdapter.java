@@ -1,4 +1,4 @@
-package com.zene.tmtpawssyetm;
+package com.zene.tmtpawssyetm.UI;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
