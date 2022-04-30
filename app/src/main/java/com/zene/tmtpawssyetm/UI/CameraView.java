@@ -107,13 +107,13 @@ public class CameraView extends Fragment {
                 if(snapshot.exists()){
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
-                    databaseReference2 = firebaseDatabase.getReference("TMTPawsUserData").child(serialnumber);
+                    databaseReference2 = firebaseDatabase.getReference("SensorData").child(serialnumber);
 
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
-                                String ipAddress = snapshot.child("camera").getValue(String.class);
+                                String ipAddress = snapshot.child("CameraIP").getValue(String.class);
 
                                 gotoUrl("http://" + ipAddress);
                             }
