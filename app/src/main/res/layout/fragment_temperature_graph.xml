@@ -3,11 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TemperatureGraph">
+    tools:context=".TemperatureGraph"
+    android:orientation="horizontal">
 
     <!-- TODO: Update blank fragment layout -->
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graphView"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </FrameLayout>

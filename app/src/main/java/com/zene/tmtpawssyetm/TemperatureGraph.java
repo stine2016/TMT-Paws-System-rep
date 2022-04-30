@@ -118,7 +118,10 @@ public class TemperatureGraph extends Fragment {
 
         databaseReference = firebaseDatabase.getReference("userInfo").child(user.getUid());
 
-        graphView.getGridLabelRenderer().setNumHorizontalLabels(6);
+
+        graphView.getViewport().setXAxisBoundsManual(true);
+        graphView.getViewport().setScrollable(true);
+        graphView.getViewport().setScalable(true);
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
             public String formatLabel(double value, boolean isValueX) {
