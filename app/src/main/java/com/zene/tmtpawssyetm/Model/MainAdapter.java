@@ -37,17 +37,25 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
         Infrared infrared = list.get(position);
         int redColorValue = Color.RED;
-        int orangeColorValue = Color.parseColor("#FF5349");
-        int blueColorValue = Color.parseColor("#FFCCCB");;
+        int orangeColorValue = Color.parseColor("#FFA500");
+        int yellowColorValue = Color.YELLOW;
+        int blueColorValue = Color.BLUE;
+        int skyblueColorValue = Color.parseColor("#87CEEB");
 //        holder.content1.setText(infrared.getCounter());
-        if(infrared.getTemp() >= 28.5){
+        if(infrared.getTemp() >= 38){
             holder.mCardView.setCardBackgroundColor(redColorValue);
         }
-        else if(infrared.getTemp() <= 27.25){
+        else if(infrared.getTemp() >= 35 && infrared.getTemp() <= 37){
+            holder.mCardView.setCardBackgroundColor(orangeColorValue);
+        }
+        else if(infrared.getTemp() >= 31 && infrared.getTemp() <= 34){
+            holder.mCardView.setCardBackgroundColor(yellowColorValue);
+        }
+        else if(infrared.getTemp() <= 30){
             holder.mCardView.setCardBackgroundColor(blueColorValue);
         }
-        else if((infrared.getTemp() >= 27.50) && (infrared.getTemp() <= 28.2)){
-            holder.mCardView.setCardBackgroundColor(orangeColorValue);
+        else if(infrared.getTemp() <= 25){
+            holder.mCardView.setCardBackgroundColor(skyblueColorValue);
         }
         holder.content2.setText(Long.toString(infrared.getTemp()) + "°C");
     }

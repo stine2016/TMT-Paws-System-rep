@@ -1,5 +1,6 @@
 package com.zene.tmtpawssyetm.UI;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 import com.zene.tmtpawssyetm.Model.Infrared;
 import com.zene.tmtpawssyetm.R;
 
@@ -114,8 +118,19 @@ public class TemperatureGraph extends Fragment {
 
 
         graphView.getViewport().setXAxisBoundsManual(true);
-        graphView.getViewport().setScrollable(true);
+        graphView.getViewport().setMinX(3);
+        graphView.getViewport().setMaxX(6);
+
+        graphView.getViewport().setYAxisBoundsManual(true);
+        graphView.getViewport().setMinY(2);
+        graphView.getViewport().setMaxY(7);
+
+//        graphView.getViewport().setScrollable(true);
+//        graphView.getViewport().setScrollableY(true);
+
         graphView.getViewport().setScalable(true);
+        graphView.getViewport().setScalableY(true);
+
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
             public String formatLabel(double value, boolean isValueX) {
@@ -124,6 +139,20 @@ public class TemperatureGraph extends Fragment {
                 }else {
                     return super.formatLabel(value, false);
                 }
+            }
+        });
+
+        series.setColor(Color.RED);
+        series.setDrawBackground(true);
+        series.setBackgroundColor(Color.argb(60, 95, 226, 156));
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(10);
+
+        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                String msg = "hour: " + simpleDateFormat.format(new Date((long) dataPoint.getX())) + "\nTemperature:" + dataPoint.getY() + "°C";
+                Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
             }
         });
         return view;
