@@ -1,13 +1,18 @@
 package com.zene.tmtpawssyetm.UI;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +30,7 @@ import com.zene.tmtpawssyetm.R;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +41,13 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
+    private EditText Name;
+    private Button cancel, save;
+
     TextView nameTextView, emailTextView, phoneTextView, serialTextView;
+    Button profileSettings;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
     DatabaseReference databaseReference;
@@ -83,8 +94,16 @@ public class ProfileFragment extends Fragment {
         emailTextView = view.findViewById(R.id.email);
         phoneTextView = view.findViewById(R.id.phone);
         serialTextView = view.findViewById(R.id.serial);
+        profileSettings = view.findViewById(R.id.profileSettings);
 
         isUser();
+
+        profileSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
 
         return view;
     }
@@ -120,5 +139,31 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void showPopup(View v){
+        PopupMenu popupMenu = new PopupMenu(getContext(), v);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.profile_menu);
+        popupMenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.editProfile:
+                Toast.makeText(getContext(), "sample", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.changePassword:
+                Toast.makeText(getContext(), "password", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public void createNewProfileDialog(){
+        builder = new AlertDialog.Builder(getContext());
+        final View profilePopupView = getLayoutInflater().inflate(R.layout.popup_profile, null);
     }
 }

@@ -1,5 +1,7 @@
 package com.zene.tmtpawssyetm.UI;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,11 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,6 +29,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.zene.tmtpawssyetm.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,8 +51,8 @@ public class AddNote extends Fragment {
     private String mParam2;
 
     FirebaseFirestore fStore;
-    EditText noteTitle,noteContent;
-    ProgressBar progressBarSave;
+    EditText noteTitle,noteContent, dateTimeIn, dateTimeOut;
+    TextView first, second;
     FirebaseUser user;
 
     public AddNote() {
@@ -84,30 +92,49 @@ public class AddNote extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_note, container, false);
 
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
         fStore = FirebaseFirestore.getInstance();
         noteContent = view.findViewById(R.id.addNoteContent);
         noteTitle = view.findViewById(R.id.addNoteTitle);
-        progressBarSave = view.findViewById(R.id.progressBar);
+        dateTimeIn = view.findViewById(R.id.dateTimeIn);
+        dateTimeOut = view.findViewById(R.id.dateTimeOut);
+        first = view.findViewById(R.id.first);
+        second = view.findViewById(R.id.second);
+
+        dateTimeIn.setInputType(InputType.TYPE_NULL);
+        dateTimeOut.setInputType(InputType.TYPE_NULL);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        first.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDateDialog(dateTimeIn);
+            }
+        });
+
+        second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDateDialog(dateTimeOut);
+            }
+        });
 
         FloatingActionButton fab = view.findViewById(R.id.saveNoteFloat);
         fab.setOnClickListener(view1 -> {
             String nTitle = noteTitle.getText().toString();
             String nContent = noteContent.getText().toString();
+            String nDateTimeIn = dateTimeIn.getText().toString();
+            String nDateTimeOut = dateTimeOut.getText().toString();
 
-            if(nTitle.isEmpty() || nContent.isEmpty()){
+            if(nTitle.isEmpty() || nContent.isEmpty() || nDateTimeIn.isEmpty() || nDateTimeOut.isEmpty()){
                 Toast.makeText(getContext(), "Can not Save note with Empty Field.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            progressBarSave.setVisibility(View.VISIBLE);
-
             DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("myNotes").document();
             Map<String,Object> note = new HashMap<>();
+            note.put("firstDate", nDateTimeIn);
+            note.put("secondDate", nDateTimeOut);
             note.put("title",nTitle);
             note.put("content",nContent);
             docref.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -121,12 +148,39 @@ public class AddNote extends Fragment {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getContext(), "Error, Try again.", Toast.LENGTH_SHORT).show();
-                    progressBarSave.setVisibility(View.VISIBLE);
                 }
             });
 
         });
 
         return view;
+    }
+
+    private void showDateDialog(EditText dateTimeIn) {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy hh:mm a");
+
+                        dateTimeIn.setText(simpleDateFormat.format(calendar.getTime()));
+                    }
+                };
+
+                new TimePickerDialog(getContext(), timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false).show();
+            }
+        };
+
+        new DatePickerDialog(getContext(), dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 }

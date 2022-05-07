@@ -32,10 +32,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:text="Reset Data"
+                    android:text="Reset App Data"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="#808080"
                     app:icon="@drawable/ic_baseline_delete_forever_24"
                     app:iconTint="@color/black" />
 
@@ -46,10 +46,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="50dp"
-                    android:text="Support"
+                    android:text="Updates and Support"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="#808080"
                     app:icon="@drawable/ic_baseline_contact_support_24"
                     app:iconTint="@color/black" />
 
@@ -63,21 +63,21 @@
                     android:text="Terms and services"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="#808080"
                     app:icon="@drawable/ic_baseline_label_important_24"
                     app:iconTint="@color/black" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/updates"
+                    android:id="@+id/share"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="150dp"
-                    android:text="Check Updates"
+                    android:text="Share this app"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="#808080"
                     app:icon="@drawable/ic_baseline_system_update_24"
                     app:iconTint="@color/black" />
 
@@ -91,7 +91,7 @@
                     android:text="Profile"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="#808080"
                     app:icon="@drawable/ic_baseline_exit_to_app_24"
                     app:iconTint="@color/black" />
 
@@ -105,7 +105,7 @@
                     android:text="Logout"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="#808080"
                     app:icon="@drawable/ic_baseline_person_24"
                     app:iconTint="@color/black" />
 

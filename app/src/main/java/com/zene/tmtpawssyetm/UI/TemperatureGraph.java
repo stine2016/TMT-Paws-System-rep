@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -54,7 +56,7 @@ public class TemperatureGraph extends Fragment {
     FirebaseAuth fAuth;
     GraphView graphView;
     LineGraphSeries series;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm");
     int counter = 0;
 //    LineDataSet lineDataSet = new LineDataSet(null,null);
 //    ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
@@ -117,19 +119,19 @@ public class TemperatureGraph extends Fragment {
         databaseReference = firebaseDatabase.getReference("userInfo").child(user.getUid());
 
 
-        graphView.getViewport().setXAxisBoundsManual(true);
-        graphView.getViewport().setMinX(3);
-        graphView.getViewport().setMaxX(6);
-
-        graphView.getViewport().setYAxisBoundsManual(true);
-        graphView.getViewport().setMinY(2);
-        graphView.getViewport().setMaxY(7);
-
+//        graphView.getViewport().setYAxisBoundsManual(true);
+//        graphView.getViewport().setMinY(0);
+//        graphView.getViewport().setMaxY(50);
+//
+//        graphView.getViewport().setXAxisBoundsManual(true);
+//        graphView.getViewport().setMinX(4);
+//        graphView.getViewport().setMaxX(12);
+//
 //        graphView.getViewport().setScrollable(true);
 //        graphView.getViewport().setScrollableY(true);
 
-        graphView.getViewport().setScalable(true);
-        graphView.getViewport().setScalableY(true);
+//        graphView.getViewport().setScalable(true);
+//        graphView.getViewport().setScalableY(true);
 
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
@@ -142,11 +144,24 @@ public class TemperatureGraph extends Fragment {
             }
         });
 
+//        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
+//        staticLabelsFormatter.setHorizontalLabels(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
+//        graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+//        graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
+
+//        graphView.getGridLabelRenderer().setHumanRounding(false);
+//        graphView.getViewport().setScalable(true);
+        graphView.getGridLabelRenderer().setNumVerticalLabels(6);
+////        graphView.getViewport().setScrollable(true);
+//        graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
+//        graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
+
         series.setColor(Color.RED);
         series.setDrawBackground(true);
         series.setBackgroundColor(Color.argb(60, 95, 226, 156));
         series.setDrawDataPoints(true);
-        series.setDataPointsRadius(10);
+        series.setDataPointsRadius(5);
 
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
@@ -186,14 +201,6 @@ public class TemperatureGraph extends Fragment {
                             }
 
                             series.resetData(dp);
-//                            if(snapshot.hasChildren()){
-//                                for(DataSnapshot myDataSnapshot:snapshot.getChildren()){
-//                                    DataPoint dataPoint = myDataSnapshot.getValue(DataPoint.class);
-//                                }
-//                            }
-//                            else{
-//                            }
-
                         }
 
                         @Override

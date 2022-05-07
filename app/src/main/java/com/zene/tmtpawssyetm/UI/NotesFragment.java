@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -99,7 +101,7 @@ public class NotesFragment extends Fragment {
         noteAdapter = new FirestoreRecyclerAdapter<Note, NoteViewHolder>(allNotes) {
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder holder, final int position, @NonNull Note model) {
-                holder.noteTitle.setText(model.getTitle());
+                holder.noteTitle.setText(model.getTitle() + ": " + model.getFirstDate() + " to " + model.getSecondDate());
                 holder.noteContent.setText(model.getContent());
                 final int code = getRandomColor();
                 holder.mCardView.setCardBackgroundColor(holder.view.getResources().getColor(code,null));
@@ -113,7 +115,8 @@ public class NotesFragment extends Fragment {
                         Bundle bundle = new Bundle();
                         bundle.putString("title", model.getTitle());
                         bundle.putString("content", model.getContent());
-                        bundle.putInt("code", code);
+                        bundle.putString("first", model.getFirstDate());
+                        bundle.putString("second", model.getSecondDate());
                         bundle.putString("noteId", docId);
                         noteDetails.setArguments(bundle);
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, noteDetails).addToBackStack(null).commit();
@@ -147,7 +150,7 @@ public class NotesFragment extends Fragment {
         return view;
     }
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder{
+    public class NoteViewHolder extends RecyclerView.ViewHolder {
         TextView noteTitle,noteContent;
         View view;
         CardView mCardView;

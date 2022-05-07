@@ -130,11 +130,14 @@ public class TemperatureFragment extends Fragment {
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            Float temperature = snapshot.child("Caltemp").getValue(Float.class);
-
-                            String Temp = Float.toString(temperature);
-                            temperature1.setText(Temp + "°");
-                            temperature2.setText(Temp + "°");
+                            if(snapshot.exists()){
+                                Float temperature = snapshot.child("Caltemp").getValue(Float.class);
+                                if(temperature != null){
+                                    String Temp = Float.toString(temperature);
+                                    temperature1.setText(Temp + "°");
+                                    temperature2.setText(Temp + "°");
+                                }
+                            }
                         }
 
                         @Override

@@ -9,6 +9,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,16 +69,21 @@ public class NoteDetails extends Fragment {
         View view = inflater.inflate(R.layout.fragment_note_details, container, false);
         String titles = this.getArguments().getString("title");
         String contents = this.getArguments().getString("content");
-        int code = this.getArguments().getInt("code");
+        String firstDate = this.getArguments().getString("first");
+        String secondDate = this.getArguments().getString("second");
         String noteId = this.getArguments().getString("noteId");
+  
+        TextView content = view.findViewById(R.id.addNoteContent);
+        TextView title = view.findViewById(R.id.addNoteTitle);
+        TextView first = view.findViewById(R.id.first);
+        TextView second = view.findViewById(R.id.second);
 
-        TextView content = view.findViewById(R.id.noteDetailsContent);
-        TextView title = view.findViewById(R.id.noteDetailsTitle);
         content.setMovementMethod(new ScrollingMovementMethod());
 
         title.setText(titles);
         content.setText(contents);
-        content.setBackgroundColor(getResources().getColor(code,null));
+        first.setText(firstDate);
+        second.setText(secondDate);
 
         FloatingActionButton fab = view.findViewById(R.id.editNoteFloat);
         fab.setOnClickListener(view1 -> {
@@ -86,6 +92,8 @@ public class NoteDetails extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("title", titles);
             bundle.putString("content", contents);
+            bundle.putString("first", firstDate);
+            bundle.putString("second", secondDate);
             bundle.putString("noteId", noteId);
             editNote.setArguments(bundle);
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, editNote).addToBackStack(null).commit();

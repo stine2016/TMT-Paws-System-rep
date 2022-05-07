@@ -120,7 +120,9 @@ public class InfraredFragment extends Fragment {
 
                             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                                 Infrared infrared = dataSnapshot.getValue(Infrared.class);
-                                list.add(infrared);
+                                if(infrared != null){
+                                    list.add(infrared);
+                                }
                             }
                             mainAdapter.notifyDataSetChanged();
                         }

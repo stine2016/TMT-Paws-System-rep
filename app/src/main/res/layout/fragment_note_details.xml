@@ -6,34 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".UI.NoteDetails">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <TextView
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of First Stud"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="19dp"
+        android:layout_marginStart="19dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/dateTimeIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:hint="Date and time"
+        android:inputType="none"
+        android:textSize="13sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:backgroundTint="@android:color/transparent"/>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#15B5B0"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+    <TextView
+        android:id="@+id/second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expected Parturition Date"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="19dp"
+        android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/noteDetailsTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+    <TextView
+        android:id="@+id/dateTimeOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date and time"
+        android:inputType="none"
+        android:textSize="13sp"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:backgroundTint="@android:color/transparent"/>
 
-        </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/addNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:inputType="none"
+        android:textColorHint="#A3A4A7"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:layout_marginTop="180dp"
+        android:layout_marginStart="19dp"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginEnd="19dp"/>
 
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_note_details" />
+    <TextView
+        android:id="@+id/addNoteContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start typing"
+        android:textColorHint="#A3A4A7"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="225dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:backgroundTint="@android:color/transparent"
+        android:inputType="textMultiLine"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,5 +92,6 @@
         android:backgroundTint="#15B5B0"
         app:maxImageSize="30dp"
         android:src="@drawable/ic_mode_edit_black_24dp"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

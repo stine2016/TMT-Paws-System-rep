@@ -13,11 +13,15 @@ import com.zene.tmtpawssyetm.R;
 public class Note {
     private String title;
     private String content;
+    private String firstDate;
+    private String secondDate;
 
     public Note(){}
-    public Note(String title, String content){
+    public Note(String title, String content, String firstDate, String secondDate){
         this.title = title;
         this.content = content;
+        this.firstDate = firstDate;
+        this.secondDate = secondDate;
     }
 
     public String getTitle() {
@@ -34,6 +38,22 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getFirstDate() {
+        return firstDate;
+    }
+
+    public void setFirstDate(String firstDate) {
+        this.firstDate = firstDate;
+    }
+
+    public String getSecondDate() {
+        return secondDate;
+    }
+
+    public void setSecondDate(String secondDate) {
+        this.secondDate = secondDate;
     }
 
     public static class TMTPawsUserData {

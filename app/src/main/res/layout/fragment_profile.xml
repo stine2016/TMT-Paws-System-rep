@@ -46,7 +46,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
-            android:text="Efren Martinez"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
@@ -58,20 +57,20 @@
             android:layout_below="@+id/name"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
-            android:text="Cebu, Philippines"
             android:textAllCaps="true"
             android:textColor="@color/address"
             android:textSize="14sp" />
 
-        <ImageView
+        <Button
+            android:id="@+id/profileSettings"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_baseline_settings_24" />
+            android:background="@drawable/ic_baseline_settings_24"
+            android:scaleType="centerInside" />
 
     </RelativeLayout>
 
@@ -107,7 +106,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="efren.martinez@cit.edu"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -137,7 +135,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="+639123292341"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -168,7 +165,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="123234123"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -40,9 +41,9 @@ public class EditNote extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    EditText editNoteTitle,editNoteContent;
     FirebaseFirestore fStore;
-    ProgressBar spinner;
+    EditText noteTitle,noteContent, dateTimeIn, dateTimeOut;
+    TextView first, second;
     FirebaseUser user;
 
     public EditNote() {
@@ -83,35 +84,41 @@ public class EditNote extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_note, container, false);
         String titles = this.getArguments().getString("title");
         String contents = this.getArguments().getString("content");
+        String firstDate = this.getArguments().getString("first");
+        String secondDate = this.getArguments().getString("second");
         String noteId = this.getArguments().getString("noteId");
 
         fStore = fStore.getInstance();
-        spinner = view.findViewById(R.id.progressBar2);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        editNoteContent = view.findViewById(R.id.editNoteContent);
-        editNoteTitle = view.findViewById(R.id.editNoteTitle);
+        noteTitle = view.findViewById(R.id.addNoteTitle);
+        noteContent = view.findViewById(R.id.addNoteContent);
+        first = view.findViewById(R.id.first);
+        second = view.findViewById(R.id.second);
 
-        editNoteTitle.setText(titles);
-        editNoteContent.setText(contents);
+        noteTitle.setText(titles);
+        noteContent.setText(contents);
+        first.setText(firstDate);
+        second.setText(secondDate);
 
-        FloatingActionButton fab = view.findViewById(R.id.saveEditedNote);
+        FloatingActionButton fab = view.findViewById(R.id.saveNoteFloat);
         fab.setOnClickListener((v) -> {
-            String nTitle = editNoteTitle.getText().toString();
-            String nContent = editNoteContent.getText().toString();
+            String nTitle = noteTitle.getText().toString();
+            String nContent = noteContent.getText().toString();
+            String nDateTimeIn = dateTimeIn.getText().toString();
+            String nDateTimeOut = dateTimeOut.getText().toString();
 
-            if(nTitle.isEmpty() || nContent.isEmpty()){
+            if(nTitle.isEmpty() || nContent.isEmpty() || nDateTimeIn.isEmpty() || nDateTimeOut.isEmpty()){
                 Toast.makeText(getContext(), "Can not Save note with Empty Field.", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            spinner.setVisibility(View.VISIBLE);
-
             // save note
 
             DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("myNotes").document(noteId);
 
             Map<String,Object> note = new HashMap<>();
+            note.put("firstDate", nDateTimeIn);
+            note.put("secondDate", nDateTimeOut);
             note.put("title",nTitle);
             note.put("content",nContent);
 
@@ -129,7 +136,6 @@ public class EditNote extends Fragment {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getContext(), "Error, Try again.", Toast.LENGTH_SHORT).show();
-                    spinner.setVisibility(View.VISIBLE);
                 }
             });
         });
