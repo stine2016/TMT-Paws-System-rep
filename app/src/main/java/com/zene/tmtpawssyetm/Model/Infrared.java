@@ -2,9 +2,9 @@ package com.zene.tmtpawssyetm.Model;
 
 public class Infrared {
     String counter;
-    long temp;
+    float temp;
 
-    public Infrared(String counter, long temp) {
+    public Infrared(String counter, float temp) {
         this.counter = counter;
         this.temp = temp;
     }
@@ -20,7 +20,7 @@ public class Infrared {
         this.counter = counter;
     }
 
-    public long getTemp() {
+    public float getTemp() {
         return temp;
     }
 

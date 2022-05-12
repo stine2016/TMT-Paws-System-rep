@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
@@ -30,6 +32,7 @@ import com.jjoe64.graphview.series.Series;
 import com.zene.tmtpawssyetm.Model.Infrared;
 import com.zene.tmtpawssyetm.R;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -52,6 +55,7 @@ public class TemperatureGraph extends Fragment {
 //    LineChart lineChart;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
+    MaterialButton scrollview;
     DatabaseReference databaseReference, databaseReference2;
     FirebaseAuth fAuth;
     GraphView graphView;
@@ -108,9 +112,11 @@ public class TemperatureGraph extends Fragment {
 //        lineDataSet.setLineWidth(4);
 
         graphView = view.findViewById(R.id.graphView);
+        scrollview = view.findViewById(R.id.scrollview);
 
         series = new LineGraphSeries();
         graphView.addSeries(series);
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -150,10 +156,8 @@ public class TemperatureGraph extends Fragment {
 
 //        graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
 
-//        graphView.getGridLabelRenderer().setHumanRounding(false);
-//        graphView.getViewport().setScalable(true);
         graphView.getGridLabelRenderer().setNumVerticalLabels(6);
-////        graphView.getViewport().setScrollable(true);
+//        graphView.getViewport().setScrollable(true);
 //        graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
 //        graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
 
@@ -168,6 +172,14 @@ public class TemperatureGraph extends Fragment {
             public void onTap(Series series, DataPointInterface dataPoint) {
                 String msg = "hour: " + simpleDateFormat.format(new Date((long) dataPoint.getX())) + "\nTemperature:" + dataPoint.getY() + "°C";
                 Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        scrollview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                graphView.getGridLabelRenderer().setNumVerticalLabels(7);
+                graphView.getViewport().setScalable(true);
             }
         });
         return view;

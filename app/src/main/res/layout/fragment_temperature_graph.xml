@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI.TemperatureGraph"
     android:orientation="horizontal">
 
@@ -16,4 +17,20 @@
         android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/scrollview"
+        android:layout_width="320dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="650dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#15B5B0"
+        android:textSize="20sp"
+        android:text="Scroll View"
+        android:textAllCaps="false"
+        android:textColor="#E5E4E4"
+        app:cornerRadius="15dp"/>
+
 </FrameLayout>

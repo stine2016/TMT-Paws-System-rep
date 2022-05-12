@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.zene.tmtpawssyetm.Model.Infrared;
+import com.zene.tmtpawssyetm.Model.InfraredShit;
 import com.zene.tmtpawssyetm.Model.MainAdapter;
 import com.zene.tmtpawssyetm.R;
 
@@ -45,7 +45,7 @@ public class InfraredFragment extends Fragment {
     FirebaseUser user;
     DatabaseReference databaseReference, databaseReference2, databaseReference3;
     FirebaseAuth fAuth;
-    ArrayList<Infrared> list;
+    ArrayList<InfraredShit> list;
     TextView distanceView;
 
     // TODO: Rename and change types of parameters
@@ -98,7 +98,7 @@ public class InfraredFragment extends Fragment {
 
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(8, StaggeredGridLayoutManager.VERTICAL));
 
-        list = new ArrayList<>();
+        list = new ArrayList<InfraredShit>();
         mainAdapter = new MainAdapter(getContext(), list);
         recyclerView.setAdapter(mainAdapter);
 
@@ -119,9 +119,9 @@ public class InfraredFragment extends Fragment {
                             list.clear();
 
                             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                Infrared infrared = dataSnapshot.getValue(Infrared.class);
-                                if(infrared != null){
-                                    list.add(infrared);
+                                InfraredShit infraredShit = dataSnapshot.getValue(InfraredShit.class);
+                                if(infraredShit != null){
+                                    list.add(infraredShit);
                                 }
                             }
                             mainAdapter.notifyDataSetChanged();

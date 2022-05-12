@@ -19,9 +19,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     Context context;
 
-    ArrayList<Infrared> list;
+    ArrayList<InfraredShit> list;
 
-    public MainAdapter(Context context, ArrayList<Infrared> list) {
+    public MainAdapter(Context context, ArrayList<InfraredShit> list) {
         this.context = context;
         this.list = list;
     }
@@ -35,7 +35,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
-        Infrared infrared = list.get(position);
+        InfraredShit infrared = list.get(position);
         int redColorValue = Color.RED;
         int orangeColorValue = Color.parseColor("#FFA500");
         int yellowColorValue = Color.YELLOW;
@@ -45,10 +45,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         if(infrared.getTemp() >= 38){
             holder.mCardView.setCardBackgroundColor(redColorValue);
         }
-        else if(infrared.getTemp() >= 35 && infrared.getTemp() <= 37){
+        else if(infrared.getTemp() > 34 && infrared.getTemp() <= 37){
             holder.mCardView.setCardBackgroundColor(orangeColorValue);
         }
-        else if(infrared.getTemp() >= 31 && infrared.getTemp() <= 34){
+        else if(infrared.getTemp() > 30 && infrared.getTemp() <= 34){
             holder.mCardView.setCardBackgroundColor(yellowColorValue);
         }
         else if(infrared.getTemp() <= 30){
@@ -57,7 +57,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         else if(infrared.getTemp() <= 25){
             holder.mCardView.setCardBackgroundColor(skyblueColorValue);
         }
-        holder.content2.setText(Long.toString(infrared.getTemp()) + "°C");
+        holder.content2.setText(Float.toString(infrared.getTemp()) + "°C");
     }
 
     @Override
