@@ -77,13 +77,16 @@ public class NoteDetails extends Fragment {
         TextView title = view.findViewById(R.id.addNoteTitle);
         TextView first = view.findViewById(R.id.first);
         TextView second = view.findViewById(R.id.second);
+        TextView dateTimeIn = view.findViewById(R.id.dateTimeIn);
+        TextView dateTimeOut = view.findViewById(R.id.dateTimeOut);
+
 
         content.setMovementMethod(new ScrollingMovementMethod());
 
         title.setText(titles);
         content.setText(contents);
-        first.setText(firstDate);
-        second.setText(secondDate);
+        dateTimeIn.setText(firstDate);
+        dateTimeOut.setText(secondDate);
 
         FloatingActionButton fab = view.findViewById(R.id.editNoteFloat);
         fab.setOnClickListener(view1 -> {

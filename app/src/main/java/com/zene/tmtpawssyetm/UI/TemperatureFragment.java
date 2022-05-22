@@ -81,34 +81,11 @@ public class TemperatureFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_temperature, container, false);
 
-        btnThermal = view.findViewById(R.id.btnThermal);
-        bgraph = view.findViewById(R.id.btnGraph);
         temperature1 = view.findViewById(R.id.temperature1);
         temperature2 = view.findViewById(R.id.temperature2);
 
         isUser();
 
-        btnThermal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                InfraredFragment infraredFragment = new InfraredFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(((ViewGroup)getView().getParent()).getId(), infraredFragment, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-
-        bgraph.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TemperatureGraph temperatureGraph = new TemperatureGraph();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(((ViewGroup)getView().getParent()).getId(), temperatureGraph, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
         return view;
     }
 
@@ -134,8 +111,16 @@ public class TemperatureFragment extends Fragment {
                                 Float temperature = snapshot.child("Caltemp").getValue(Float.class);
                                 if(temperature != null){
                                     String Temp = Float.toString(temperature);
-                                    temperature1.setText(Temp + "°");
-                                    temperature2.setText(Temp + "°");
+                                    temperature1.setText(Temp + "°C");
+                                    temperature2.setText(Temp + "°C");
+                                }
+                                else{
+                                    Float temperatureC = snapshot.child("caltemp").getValue(Float.class);
+                                    if(temperature1 != null){
+                                        String Temp = Float.toString(temperatureC);
+                                        temperature1.setText(Temp + "°C");
+                                        temperature2.setText(Temp + "°C");
+                                    }
                                 }
                             }
                         }

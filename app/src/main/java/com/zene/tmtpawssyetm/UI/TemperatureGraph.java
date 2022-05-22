@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,6 +60,7 @@ public class TemperatureGraph extends Fragment {
     DatabaseReference databaseReference, databaseReference2;
     FirebaseAuth fAuth;
     GraphView graphView;
+    BarChart barChart;
     LineGraphSeries series;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm");
     int counter = 0;

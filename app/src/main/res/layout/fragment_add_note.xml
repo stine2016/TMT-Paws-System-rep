@@ -52,6 +52,15 @@
         android:layout_marginEnd="19dp"
         android:backgroundTint="@android:color/transparent"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ligtas_background"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"/>
+
     <EditText
         android:id="@+id/addNoteTitle"
         android:layout_width="match_parent"
@@ -61,7 +70,7 @@
         android:textColor="@color/black"
         android:textSize="28sp"
         android:layout_marginTop="180dp"
-        android:layout_marginStart="19dp"
+        android:layout_marginStart="20dp"
         android:backgroundTint="@android:color/transparent"
         android:layout_marginEnd="19dp"/>
 
@@ -74,7 +83,7 @@
         android:textSize="15sp"
         android:textColor="@color/black"
         android:layout_marginTop="220dp"
-        android:layout_marginStart="19dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="19dp"
         android:backgroundTint="@android:color/transparent"
         android:inputType="textMultiLine"/>

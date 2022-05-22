@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:focusableInTouchMode="true"
     android:gravity="center"
-    tools:context=".UI.HomeFragment">
+    tools:context=".UI.TemperatureFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="55dp"
-                    android:text="38.5 °C"
+                    android:text="35 °C"
                     android:textColor="#A3A4A7"
                     android:textSize="25sp" />
 
@@ -62,7 +62,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -76,7 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="38.5°C"
+                    android:text="35°C"
                     android:textColor="#A3A4A7"
                     android:textSize="42sp" />
 
@@ -98,32 +99,32 @@
 <!--                    android:textSize="20sp"-->
 <!--                    app:cornerRadius="20dp" />-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnThermal"
-                    android:layout_width="320dp"
-                    android:layout_height="65dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="15dp"
-                    android:backgroundTint="#15B5B0"
-                    android:text="Thermal View"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:cornerRadius="20dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/btnThermal"-->
+<!--                    android:layout_width="320dp"-->
+<!--                    android:layout_height="65dp"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:backgroundTint="#15B5B0"-->
+<!--                    android:text="Thermal View"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="20sp"-->
+<!--                    app:cornerRadius="20dp" />-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnGraph"
-                    android:layout_width="320dp"
-                    android:layout_height="65dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginBottom="15dp"
-                    android:backgroundTint="#15B5B0"
-                    android:text="Graph"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:cornerRadius="20dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/btnGraph"-->
+<!--                    android:layout_width="320dp"-->
+<!--                    android:layout_height="65dp"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_marginTop="80dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:backgroundTint="#15B5B0"-->
+<!--                    android:text="Graph"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="20sp"-->
+<!--                    app:cornerRadius="20dp" />-->
 
             </RelativeLayout>
 

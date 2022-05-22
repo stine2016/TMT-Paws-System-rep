@@ -32,9 +32,9 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="5dp"
-                    app:civ_border_width="2dp"
+                    android:src="@drawable/ic_user"
                     app:civ_border_color="@color/lightPurple"
-                    android:src="@drawable/ic_user"/>
+                    app:civ_border_width="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnNotification"

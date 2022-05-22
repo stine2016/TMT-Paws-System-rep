@@ -138,8 +138,10 @@ public class InfraredFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             Float distance = snapshot.child("distance").getValue(Float.class);
 
-                            String dist = Float.toString(distance);
-                            distanceView.setText("Distance: " + dist);
+                            if(distance != null){
+                                String dist = Float.toString(distance);
+                                distanceView.setText("Distance: " + dist);
+                            }
                         }
 
                         @Override

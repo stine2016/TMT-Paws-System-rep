@@ -31,6 +31,8 @@ import com.zene.tmtpawssyetm.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,15 +111,22 @@ public class AddNote extends Fragment {
             @Override
             public void onClick(View view) {
                 showDateDialog(dateTimeIn);
+
+//                Calendar cal = new GregorianCalendar();
+//                cal.setTime(new Date(second.toString()));
+//                cal.add(Calendar.DAY_OF_MONTH, +60);
+//                Date today = cal.getTime();
+//
+//                dateTimeOut.setText(today.toString());
             }
         });
 
-        second.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDateDialog(dateTimeOut);
-            }
-        });
+//        second.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showDateDialog(dateTimeOut);
+//            }
+//        });
 
         FloatingActionButton fab = view.findViewById(R.id.saveNoteFloat);
         fab.setOnClickListener(view1 -> {
@@ -174,6 +183,12 @@ public class AddNote extends Fragment {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM yyyy hh:mm a");
 
                         dateTimeIn.setText(simpleDateFormat.format(calendar.getTime()));
+
+                        Calendar cal = new GregorianCalendar();
+                        cal.setTime(calendar.getTime());
+                        cal.add(Calendar.DAY_OF_MONTH, +60);
+
+                        dateTimeOut.setText(simpleDateFormat.format(cal.getTime()));
                     }
                 };
 

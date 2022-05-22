@@ -101,7 +101,7 @@ public class NotesFragment extends Fragment {
         noteAdapter = new FirestoreRecyclerAdapter<Note, NoteViewHolder>(allNotes) {
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder holder, final int position, @NonNull Note model) {
-                holder.noteTitle.setText(model.getTitle() + ": " + model.getFirstDate() + " to " + model.getSecondDate());
+                holder.noteTitle.setText(model.getTitle() + "\n\n\n Date of First Study: " + model.getFirstDate() + "\n\n Expected Parturition Date" + model.getSecondDate());
                 holder.noteContent.setText(model.getContent());
                 final int code = getRandomColor();
                 holder.mCardView.setCardBackgroundColor(holder.view.getResources().getColor(code,null));

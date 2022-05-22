@@ -2,13 +2,31 @@ package com.zene.tmtpawssyetm.UI;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.zene.tmtpawssyetm.Model.TableAdapter;
+import com.zene.tmtpawssyetm.Model.TableModel;
+import com.zene.tmtpawssyetm.Model.TableShit;
 import com.zene.tmtpawssyetm.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +34,14 @@ import com.zene.tmtpawssyetm.R;
  * create an instance of this fragment.
  */
 public class TemperatureTable extends Fragment {
+
+    RecyclerView recyclerView;
+    TableAdapter tableAdapter;
+    FirebaseDatabase firebaseDatabase;
+    FirebaseUser user;
+    DatabaseReference databaseReference, databaseReference2, databaseReference3;
+    FirebaseAuth fAuth;
+    ArrayList<TableShit> list;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +87,29 @@ public class TemperatureTable extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_temperature_table2, container, false);
+        View view = inflater.inflate(R.layout.fragment_temperature_table2, container, false);
+
+        recyclerView = view.findViewById(R.id.tableRecycleView);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        return view;
     }
+
+//    private void setRecyclerView() {
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        tableAdapter = new TableAdapter(getContext(), getList());
+//        recyclerView.setAdapter(tableAdapter);
+//    }
+//
+//    private List<TableModel> getList(){
+//        List<TableModel> table_list = new ArrayList<>();
+//        table_list.add(new TableModel(29, 1653235316661L));
+//        table_list.add(new TableModel(30, 1653235363900L));
+//        table_list.add(new TableModel(28, 1653235411921L));
+//        table_list.add(new TableModel(31, 1653235411921L));
+//        return table_list;
+//    }
 }

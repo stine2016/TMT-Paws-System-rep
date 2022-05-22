@@ -52,6 +52,15 @@
         android:layout_marginEnd="19dp"
         android:backgroundTint="@android:color/transparent"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ligtas_background"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"/>
+
     <TextView
         android:id="@+id/addNoteTitle"
         android:layout_width="match_parent"
