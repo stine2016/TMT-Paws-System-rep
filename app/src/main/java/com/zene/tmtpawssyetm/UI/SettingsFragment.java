@@ -44,7 +44,7 @@ public class SettingsFragment extends Fragment {
     private String mParam2;
 
     Dialog dialog;
-    private MaterialButton profile, logout, reset, share;
+    private MaterialButton profile, logout, reset, share, terms;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
     DatabaseReference databaseReference, databaseReference2, databaseReference3;
@@ -103,6 +103,7 @@ public class SettingsFragment extends Fragment {
         profile = view.findViewById(R.id.profile);
         reset = view.findViewById(R.id.reset);
         share = view.findViewById(R.id.share);
+        terms = view.findViewById(R.id.terms);
 
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();
@@ -162,6 +163,13 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 dialog.show();
+            }
+        });
+
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoUrl("https://docs.google.com/document/d/1O0ZauyaiFl7WT9J3h877KDAuDgaVZJSYGrXiP_t7Pfw/edit?usp=sharing");
             }
         });
         return view;

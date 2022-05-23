@@ -194,6 +194,13 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        imageUserManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoUrl("https://docs.google.com/document/d/14OecKvakJMlKmio92hQkKwcmMTcA30vJaTMIvUNgVLI/edit?usp=sharin");
+            }
+        });
+
         return view;
     }
 
