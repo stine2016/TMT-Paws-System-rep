@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1,2,3"
+    android:layout_margin="20dp"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#15B5B0"
+        >
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:text="@string/temperature_data"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <TableRow>
+        <TextView
+            android:text="@string/id"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_column="1"
+            />
+        <TextView
+            android:text="@string/temp_c"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_column="1"
+            android:gravity="center"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:text="@string/time"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_column="1"
+            android:gravity="center"
+            />
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/table_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+</TableLayout>

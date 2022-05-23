@@ -1,5 +1,5 @@
 package com.zene.tmtpawssyetm.Model;
-
+//temperature_table
 public class Infrared {
     String counter;
     float temp;

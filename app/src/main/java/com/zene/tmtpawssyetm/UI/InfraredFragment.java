@@ -1,5 +1,5 @@
 package com.zene.tmtpawssyetm.UI;
-
+//infrared adapter
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,11 +20,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jjoe64.graphview.series.DataPointInterface;
+import com.jjoe64.graphview.series.Series;
 import com.zene.tmtpawssyetm.Model.InfraredShit;
 import com.zene.tmtpawssyetm.Model.MainAdapter;
 import com.zene.tmtpawssyetm.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +49,7 @@ public class InfraredFragment extends Fragment {
     DatabaseReference databaseReference, databaseReference2, databaseReference3;
     FirebaseAuth fAuth;
     ArrayList<InfraredShit> list;
-    TextView distanceView;
+    //TextView distanceView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -90,7 +93,7 @@ public class InfraredFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_infrared, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        distanceView = view.findViewById(R.id.distance);
+       // distanceView = view.findViewById(R.id.distance);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -133,8 +136,9 @@ public class InfraredFragment extends Fragment {
                         }
                     });
 
-                    databaseReference3.addValueEventListener(new ValueEventListener() {
-                        @Override
+
+                     /*databaseReference3.addValueEventListener(new ValueEventListener() {
+                      @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             Float distance = snapshot.child("distance").getValue(Float.class);
 
@@ -146,7 +150,7 @@ public class InfraredFragment extends Fragment {
                         public void onCancelled(@NonNull DatabaseError error) {
                             Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    });*/
                 }
                 else{
                     Toast.makeText(getContext(), "Intruder Alert!!", Toast.LENGTH_SHORT).show();

@@ -1,5 +1,5 @@
 package com.zene.tmtpawssyetm.UI;
-
+//where table can be click through UI
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,8 +28,8 @@ import com.zene.tmtpawssyetm.R;
  */
 public class TemperatureFragment extends Fragment {
 
-    MaterialButton btnThermal, bgraph;
-    TextView temperature1, temperature2;
+    MaterialButton btnThermal, bgraph, btn_table;
+    TextView temperature2;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
     DatabaseReference databaseReference, databaseReference2;
@@ -83,8 +83,8 @@ public class TemperatureFragment extends Fragment {
 
         btnThermal = view.findViewById(R.id.btnThermal);
         bgraph = view.findViewById(R.id.btnGraph);
-        temperature1 = view.findViewById(R.id.temperature1);
         temperature2 = view.findViewById(R.id.temperature2);
+        btn_table = view.findViewById(R.id.btn_table);
 
         isUser();
 
@@ -98,7 +98,16 @@ public class TemperatureFragment extends Fragment {
                         .commit();
             }
         });
-
+        btn_table.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TemperatureGraph temperatureGraph = new TemperatureGraph();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), temperatureGraph, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         bgraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +143,6 @@ public class TemperatureFragment extends Fragment {
                                 Float temperature = snapshot.child("Caltemp").getValue(Float.class);
                                 if(temperature != null){
                                     String Temp = Float.toString(temperature);
-                                    temperature1.setText(Temp + "°");
                                     temperature2.setText(Temp + "°");
                                 }
                             }

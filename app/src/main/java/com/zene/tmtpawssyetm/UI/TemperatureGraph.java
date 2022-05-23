@@ -34,6 +34,7 @@ import com.zene.tmtpawssyetm.R;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -141,13 +142,16 @@ public class TemperatureGraph extends Fragment {
 
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
-            public String formatLabel(double value, boolean isValueX) {
+             public String formatLabel(double value, boolean isValueX) {
                 if(isValueX){
                     return simpleDateFormat.format(new Date((long) value));
+
+
                 }else {
                     return super.formatLabel(value, false);
                 }
             }
+
         });
 
 //        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
@@ -156,17 +160,25 @@ public class TemperatureGraph extends Fragment {
 
 //        graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
 
-        graphView.getGridLabelRenderer().setNumVerticalLabels(6);
+//        graphView.getGridLabelRenderer().setNumVerticalLabels(6);
+
 //        graphView.getViewport().setScrollable(true);
 //        graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
 //        graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
+
+
 
         series.setColor(Color.RED);
         series.setDrawBackground(true);
         series.setBackgroundColor(Color.argb(60, 95, 226, 156));
         series.setDrawDataPoints(true);
         series.setDataPointsRadius(5);
-
+        //set the maximum y by 25 temp to 45 temp
+        graphView.getViewport().setYAxisBoundsManual(true);
+        graphView.getViewport().setMinY(25.0);
+        graphView.getViewport().setMaxY(45.0);
+        graphView.getViewport().setScrollable(true);
+        graphView.getGridLabelRenderer().setNumVerticalLabels(7);
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
@@ -207,7 +219,7 @@ public class TemperatureGraph extends Fragment {
 
 //                                Date d = new Date(pointValues.getTimestamp());
 //                                String date = new SimpleDateFormat("dd-MM", Locale.getDefault()).format(d);
-
+                               // dp[index] = new DataPoint(pointValues.getTs(), pointValues.getCaltemp());
                                 dp[index] = new DataPoint(pointValues.getTs(), pointValues.getCaltemp());
                                 index++;
                             }

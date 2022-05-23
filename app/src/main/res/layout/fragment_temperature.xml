@@ -29,23 +29,23 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dog's Temperature"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:textSize="24sp"
+                    android:layout_alignParentTop="true"
+                    android:text="Dog's Temperature"
                     android:textColor="#000000"
-                    android:textStyle="bold"/>
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="25dp"
                     android:text="Ideal Temperature"
                     android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="25dp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/temperature1"
@@ -87,16 +87,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-<!--                <com.google.android.material.button.MaterialButton-->
-<!--                    android:id="@+id/btnTempChecking"-->
-<!--                    android:layout_width="320dp"-->
-<!--                    android:layout_height="65dp"-->
-<!--                    android:layout_centerHorizontal="true"-->
-<!--                    android:backgroundTint="#15B5B0"-->
-<!--                    android:text="Manual Checking"-->
-<!--                    android:textColor="#000000"-->
-<!--                    android:textSize="20sp"-->
-<!--                    app:cornerRadius="20dp" />-->
+                <!--                <com.google.android.material.button.MaterialButton-->
+                <!--                    android:id="@+id/btnTempChecking"-->
+                <!--                    android:layout_width="320dp"-->
+                <!--                    android:layout_height="65dp"-->
+                <!--                    android:layout_centerHorizontal="true"-->
+                <!--                    android:backgroundTint="#15B5B0"-->
+                <!--                    android:text="Manual Checking"-->
+                <!--                    android:textColor="#000000"-->
+                <!--                    android:textSize="20sp"-->
+                <!--                    app:cornerRadius="20dp" />-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnThermal"
@@ -113,13 +113,26 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnGraph"
-                    android:layout_width="320dp"
-                    android:layout_height="65dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="148dp"
+                    android:layout_height="66dp"
                     android:layout_marginTop="80dp"
                     android:layout_marginBottom="15dp"
                     android:backgroundTint="#15B5B0"
                     android:text="Graph"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:cornerRadius="20dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_table"
+                    android:layout_width="148dp"
+                    android:layout_height="66dp"
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="15dp"
+                    android:backgroundTint="#15B5B0"
+                    android:text="Table"
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"

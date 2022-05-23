@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="17dp"
                 android:format12Hour="MMM dd, yyyy"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -40,8 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="90dp"
-                android:text="Distance"
+                android:layout_marginTop="65dp"
+                android:text="Infrared View"
                 android:textAlignment="center"
                 android:textSize="15sp" />
 
@@ -58,18 +58,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.05">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp">
-        </androidx.recyclerview.widget.RecyclerView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="120dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="157dp"></androidx.recyclerview.widget.RecyclerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
