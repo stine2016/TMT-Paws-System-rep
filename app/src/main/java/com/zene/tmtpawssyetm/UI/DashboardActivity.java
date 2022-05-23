@@ -36,6 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
     FirebaseUser user;
     DatabaseReference databaseReference, databaseReference2;
     FirebaseAuth fAuth;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,18 +123,47 @@ public class DashboardActivity extends AppCompatActivity {
                                 if(temperature != null){
                                     Float Temp = temperature;
 
-                                    if(Temp > 35){
+                                    if((Temp >= 34 && Temp <=37) && counter == 5){
                                         NotificationCompat.Builder builder = new NotificationCompat.Builder(DashboardActivity.this, "My Notification");
                                         builder.setContentTitle("Your dog check!");
-                                        builder.setContentText("Temperature at " + Temp.toString() + "°C");
+                                        builder.setContentText("Your dog might due today!");
                                         builder.setSmallIcon(R.mipmap.ic_launcher);
                                         builder.setAutoCancel(true);
 
                                         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(DashboardActivity.this);
                                         managerCompat.notify(1,builder.build());
 
-
+                                        counter = 0;
                                     }
+
+                                    if(Temp >= 42 && counter == 5){
+                                        NotificationCompat.Builder builder = new NotificationCompat.Builder(DashboardActivity.this, "My Notification");
+                                        builder.setContentTitle("Your dog check!");
+                                        builder.setContentText("Dog has possible fever");
+                                        builder.setSmallIcon(R.mipmap.ic_launcher);
+                                        builder.setAutoCancel(true);
+
+                                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(DashboardActivity.this);
+                                        managerCompat.notify(1,builder.build());
+
+                                        counter = 0;
+                                    }
+
+                                    if(Temp <= 32 && counter == 5){
+                                        NotificationCompat.Builder builder = new NotificationCompat.Builder(DashboardActivity.this, "My Notification");
+                                        builder.setContentTitle("Your dog check!");
+                                        builder.setContentText("Sensor can't detect the dog.");
+                                        builder.setSmallIcon(R.mipmap.ic_launcher);
+                                        builder.setAutoCancel(true);
+
+                                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(DashboardActivity.this);
+                                        managerCompat.notify(1,builder.build());
+
+                                        counter = 0;
+                                    }
+
+//                                    Toast.makeText(DashboardActivity.this, "Counter: " + Integer.toString(counter), Toast.LENGTH_SHORT).show();
+                                    counter++;
                                 }
                             }
                         }

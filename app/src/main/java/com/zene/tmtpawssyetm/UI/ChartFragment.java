@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -18,7 +19,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +33,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.zene.tmtpawssyetm.Model.DataPoint;
 import com.zene.tmtpawssyetm.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +51,9 @@ public class ChartFragment extends Fragment {
     FirebaseAuth fAuth;
     LineDataSet lineDataSet = new LineDataSet(null,null);
     ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
+    ArrayList<Long> arrayList = new ArrayList<>();
     LineData lineData;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd, hh:mm a");
     float x =0;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -136,6 +143,24 @@ public class ChartFragment extends Fragment {
 
         retrieveData();
 
+        lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener()
+        {
+            @Override
+            public void onValueSelected(Entry e, Highlight h)
+            {
+                float x=e.getX();
+                float y=e.getY();
+
+                String msg = "Date: " + simpleDateFormat.format(new Date(arrayList.get((int)x)));
+                Toast.makeText(getContext(), "Temperature: " + Float.toString(y) + "°C\n" + msg, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected()
+            {
+
+            }
+        });
         return view;
     }
 
@@ -156,6 +181,7 @@ public class ChartFragment extends Fragment {
                             if(snapshot.hasChildren()){
                                 for(DataSnapshot myDataSnapshot : snapshot.getChildren()){
                                     DataPoint dataPoint = myDataSnapshot.getValue(DataPoint.class);
+                                    arrayList.add(dataPoint.getTs());
                                     dataVals.add(new Entry(x, dataPoint.getCaltemp()));
                                     x++;
                                 }

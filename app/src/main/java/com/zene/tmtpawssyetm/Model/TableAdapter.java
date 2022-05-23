@@ -14,6 +14,7 @@ import com.zene.tmtpawssyetm.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,6 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(table_list != null && table_list.size() > 0){
             TableShit model = table_list.get(position);
-            Date date = new Date(model.getTs());
             holder.temp_c.setText(Float.toString(model.getCaltemp()) + "°C");
             holder.time_c.setText(simpleDateFormat.format(new Date(model.getTs())));
         } else {

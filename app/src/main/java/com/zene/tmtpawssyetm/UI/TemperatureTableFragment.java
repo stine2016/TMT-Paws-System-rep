@@ -26,6 +26,7 @@ import com.zene.tmtpawssyetm.Model.TableShit;
 import com.zene.tmtpawssyetm.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,7 +96,10 @@ public class TemperatureTableFragment extends Fragment {
         user = fAuth.getCurrentUser();
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         list = new ArrayList<TableShit>();
         tableAdapter = new TableAdapter(getContext(), list);
@@ -109,7 +113,7 @@ public class TemperatureTableFragment extends Fragment {
                 if(snapshot.exists()){
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
-                    databaseReference2 = firebaseDatabase.getReference("ChartValues").child(serialnumber);
+                    databaseReference2 = (DatabaseReference) firebaseDatabase.getReference("ChartValues").child(serialnumber);
 
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -122,6 +126,7 @@ public class TemperatureTableFragment extends Fragment {
                                     list.add(tableModel);
                                 }
                             }
+
                             tableAdapter.notifyDataSetChanged();
                         }
 

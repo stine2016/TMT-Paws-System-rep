@@ -1,15 +1,19 @@
 package com.zene.tmtpawssyetm.UI;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,9 +21,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.zene.tmtpawssyetm.Model.Note;
@@ -34,7 +41,7 @@ import java.util.Random;
  * Use the {@link NotesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotesFragment extends Fragment {
+public class NotesFragment extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -120,6 +127,51 @@ public class NotesFragment extends Fragment {
                         bundle.putString("noteId", docId);
                         noteDetails.setArguments(bundle);
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, noteDetails).addToBackStack(null).commit();
+                    }
+                });
+
+                holder.view.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+                        popupMenu.setGravity(Gravity.END);
+                        popupMenu.getMenu().add("Edit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                                EditNote editNote = new EditNote();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("title", model.getTitle());
+                                bundle.putString("content", model.getContent());
+                                bundle.putString("first", model.getFirstDate());
+                                bundle.putString("second", model.getSecondDate());
+                                bundle.putString("noteId", docId);
+                                editNote.setArguments(bundle);
+                                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, editNote).addToBackStack(null).commit();
+                                return false;
+                            }
+                        });
+                        popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                DocumentReference documentReference = fStore.collection("notes").document(user.getUid()).collection("myNotes").document(docId);
+                                documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        //delete notes
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getContext(), "There has been an error deleting the note.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                return false;
+                            }
+                        });
+
+                        popupMenu.show();
+                        return false;
                     }
                 });
             }
