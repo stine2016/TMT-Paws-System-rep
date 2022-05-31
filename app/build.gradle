@@ -53,6 +53,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.1.1'
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.1'
     implementation 'com.google.firebase:firebase-messaging:23.0.3'
+    implementation 'androidx.navigation:navigation-runtime:2.3.5'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -66,4 +67,5 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.google.android.play:core:1.10.3'
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }
