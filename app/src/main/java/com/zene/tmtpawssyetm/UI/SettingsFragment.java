@@ -44,7 +44,7 @@ public class SettingsFragment extends Fragment {
     private String mParam2;
 
     Dialog dialog;
-    private MaterialButton profile, logout, reset, share, terms, update;
+    private MaterialButton profile, logout, reset, share, terms;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
     DatabaseReference databaseReference, databaseReference2, databaseReference3;
@@ -173,12 +173,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "App is up to date.", Toast.LENGTH_SHORT);
-            }
-        });
         return view;
     }
 
