@@ -104,7 +104,6 @@ public class SettingsFragment extends Fragment {
         reset = view.findViewById(R.id.reset);
         share = view.findViewById(R.id.share);
         terms = view.findViewById(R.id.terms);
-        update = view.findViewById(R.id.supports);
 
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();

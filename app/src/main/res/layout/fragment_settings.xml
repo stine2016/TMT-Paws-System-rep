@@ -40,20 +40,6 @@
                     app:iconTint="@color/black" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/supports"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="50dp"
-                    android:text="Updates"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false"
-                    android:textColor="#808080"
-                    app:icon="@drawable/ic_baseline_contact_support_24"
-                    app:iconTint="@color/black" />
-
-                <com.google.android.material.button.MaterialButton
                     android:id="@+id/terms"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
