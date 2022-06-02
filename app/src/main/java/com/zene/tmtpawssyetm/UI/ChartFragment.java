@@ -135,7 +135,7 @@ public class ChartFragment extends Fragment {
 
         YAxis yAxis = lineChart.getAxisLeft();
         yAxis.setTextColor(Color.BLACK);
-        yAxis.setAxisMaxValue(40f);
+        yAxis.setAxisMaxValue(50f);
         yAxis.setDrawGridLines(true);
 
         YAxis yAxis1 = lineChart.getAxisRight();

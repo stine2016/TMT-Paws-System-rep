@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -101,6 +102,26 @@ public class BarchartFragment extends Fragment {
 
         databaseReference = firebaseDatabase.getReference("userInfo").child(user.getUid());
 
+        barChart.setTouchEnabled(true);
+
+        barChart.setDragEnabled(true);
+        barChart.setScaleEnabled(true);
+        barChart.setDrawGridBackground(false);
+
+        barChart.setPinchZoom(true);
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setTextColor(Color.BLACK);
+        xAxis.setDrawGridLines(false);
+        xAxis.setAvoidFirstLastClipping(true);
+
+        YAxis yAxis = barChart.getAxisLeft();
+        yAxis.setTextColor(Color.BLACK);
+        yAxis.setAxisMaxValue(50f);
+        yAxis.setDrawGridLines(true);
+
+        YAxis yAxis1 = barChart.getAxisRight();
+        yAxis1.setEnabled(false);
 
         retrieveData();
 
@@ -153,9 +174,15 @@ public class BarchartFragment extends Fragment {
 
     private void showChart(ArrayList<BarEntry> dataVals) {
         BarDataSet barDataSet = new BarDataSet(dataVals, "Temperature");
+        barDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+        barDataSet.setColor(ColorTemplate.getHoloBlue());
+        barDataSet.setHighLightColor(Color.rgb(244,117,177));
+        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextSize(10f);
         BarData barData = new BarData();
         barData.addDataSet(barDataSet);
-
+        barChart.setVisibleXRangeMaximum(6);
+        barChart.moveViewToX(barData.getDataSetCount() - 7);
         barChart.setData(barData);
         barChart.invalidate();
     }
