@@ -11,40 +11,16 @@
     <RelativeLayout
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:background="@drawable/grad"
         android:paddingBottom="20dp">
-
-        <RelativeLayout
-            android:id="@+id/imgUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/circle_border">
-
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="9dp"
-                android:layout_marginBottom="9dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/circle"
-                android:padding="3dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_user" />
-
-        </RelativeLayout>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
+            android:layout_marginTop="50dp"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/white"
             android:textSize="32sp" />
@@ -180,5 +156,14 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/dummy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/headings"
+        android:textSize="13sp"
+        android:visibility="invisible" />
+
 
 </FrameLayout>

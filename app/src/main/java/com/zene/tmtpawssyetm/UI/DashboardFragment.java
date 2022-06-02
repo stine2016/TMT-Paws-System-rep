@@ -103,13 +103,11 @@ public class DashboardFragment extends Fragment {
         imageThermo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(adduserTemp()){
-                    TemperatureFragment temperatureFragment = new TemperatureFragment();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(((ViewGroup)getView().getParent()).getId(), temperatureFragment, "findThisFragment")
-                            .addToBackStack(null)
-                            .commit();
-                }
+                TemperatureFragment temperatureFragment = new TemperatureFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), temperatureFragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

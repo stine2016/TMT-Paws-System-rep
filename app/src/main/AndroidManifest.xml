@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tmtpawssyetm">
-<!--        <activity-->
-<!--            android:name=".walkthrough"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".UI.ForgotPassword"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".walkthrough" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".UI.InfraredView"
             android:exported="false" />
@@ -49,18 +52,16 @@
         <activity
             android:name=".UI.LoginActivity"
             android:exported="false" />
-         <activity
+        <activity
             android:name=".UI.MainActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".MainActivity" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
             android:name=".Model.Note$walkthrough"
             android:exported="true">
@@ -71,11 +72,12 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".UI.backgroundProcess"
+        <receiver
+            android:name=".UI.backgroundProcess"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="BackgroundProcess"/>
+                <action android:name="BackgroundProcess" />
             </intent-filter>
         </receiver>
     </application>

@@ -8,12 +8,16 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,8 +33,10 @@ public class LoginActivityV2 extends AppCompatActivity {
     private Button Btn;
     private ProgressBar progressbar;
     private CheckBox rememberMe;
+    TextView forgotPass;
     String userId;
     FirebaseUser user;
+    boolean passwordVisible;
 
     private FirebaseAuth mAuth;
 
@@ -49,6 +55,8 @@ public class LoginActivityV2 extends AppCompatActivity {
         progressbar = findViewById(R.id.progressbar);
         Btn = findViewById(R.id.LoginButton);
         rememberMe = findViewById(R.id.rememberMe);
+        forgotPass = findViewById(R.id.forgotPassword);
+
 
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String checkBox = preferences.getString("remember","");
@@ -82,6 +90,41 @@ public class LoginActivityV2 extends AppCompatActivity {
                     editor.apply();
                     Toast.makeText(LoginActivityV2.this, "Unchecked", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent
+                        = new Intent(LoginActivityV2.this,
+                        ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
+        passwordTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int Right = 2;
+                if(motionEvent.getAction()==MotionEvent.ACTION_UP){
+                    if(motionEvent.getRawX()>=passwordTextView.getRight()-passwordTextView.getCompoundDrawables()[Right].getBounds().width()){
+                        int selection = passwordTextView.getSelectionEnd();
+                        if(passwordVisible){
+                            passwordTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                            passwordTextView.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordVisible=false;
+                        }else{
+                            passwordTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                            passwordTextView.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordVisible=true;
+                        }
+                        passwordTextView.setSelection(selection);
+                        return true;
+                    }
+                }
+
+                return false;
             }
         });
     }

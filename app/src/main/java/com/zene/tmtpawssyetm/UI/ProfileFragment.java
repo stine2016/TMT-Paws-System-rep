@@ -1,21 +1,32 @@
 package com.zene.tmtpawssyetm.UI;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +34,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.zene.tmtpawssyetm.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +63,8 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
     private AlertDialog dialog;
     private EditText Name;
     private Button cancel, save;
+    private TextView dummy;
+    private Uri imageUri;
 
     TextView nameTextView, emailTextView, phoneTextView, serialTextView;
     Button profileSettings;
@@ -52,6 +72,8 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
     FirebaseUser user;
     DatabaseReference databaseReference;
     FirebaseAuth fAuth;
+    ImageView profileImage;
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -95,6 +117,7 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
         phoneTextView = view.findViewById(R.id.phone);
         serialTextView = view.findViewById(R.id.serial);
         profileSettings = view.findViewById(R.id.profileSettings);
+        dummy = view.findViewById(R.id.dummy);
 
         isUser();
 
@@ -108,10 +131,19 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
         return view;
     }
 
+
+
     private void isUser() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();
+
+        String emailPattern = "[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*"
+                + "      @[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})";
+
+        emailPattern = "(?<emailHead>[_A-Za-z0-9-\\+]{1,3})+?(?<replacementEmailPart>[_A-Za-z0-9-\\+]*)*?(?<emailTail>@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})){1}";
+
+        Pattern p = Pattern.compile(emailPattern);
 
         databaseReference = firebaseDatabase.getReference("userInfo").child(user.getUid());
 
@@ -124,8 +156,25 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
                     String phonenumber = snapshot.child("phonenumber").getValue(String.class);
                     String serialnumber = snapshot.child("serialnumber").getValue(String.class);
 
+                    Matcher m = p.matcher(email);
+
+                    StringBuffer sb = new StringBuffer();
+                    while (m.find()) {
+                        String replStr = m.group("replacementEmailPart");
+                        if (replStr != null) {
+                            replStr = replStr.replaceAll("[_A-Za-z0-9-\\+]", "*");
+                        } else {
+                            replStr = "****";
+                        }
+                        m.appendReplacement(sb, m.group("emailHead")
+                                + replStr
+                                + m.group("emailTail"));
+                    }
+                    m.appendTail(sb);
+
+                    dummy.setText(email);
                     nameTextView.setText(name);
-                    emailTextView.setText(email);
+                    emailTextView.setText(sb.toString());
                     phoneTextView.setText(phonenumber);
                     serialTextView.setText(serialnumber);
                 }
@@ -151,11 +200,18 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.editProfile:
-                Toast.makeText(getContext(), "sample", Toast.LENGTH_SHORT).show();
-                return true;
+//            case R.id.editProfile:
+//                Toast.makeText(getContext(), "sample", Toast.LENGTH_SHORT).show();
+//
+//                return true;
             case R.id.changePassword:
-                Toast.makeText(getContext(), "password", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "password", Toast.LENGTH_SHORT).show();
+                AppCompatActivity activity = (AppCompatActivity) getContext();
+                ChangeFragment changeFragment = new ChangeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("email", dummy.toString());
+                changeFragment.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, changeFragment).addToBackStack(null).commit();
                 return true;
             default:
                 return false;

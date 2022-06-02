@@ -303,7 +303,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Graph"
+                        android:text="Line Graph"
                         android:textAlignment="center"
                         android:textColor="#2e3d6d"
                         android:textSize="14sp"
