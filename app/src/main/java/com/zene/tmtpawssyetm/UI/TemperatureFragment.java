@@ -111,14 +111,12 @@ public class TemperatureFragment extends Fragment {
                                 Float temperature = snapshot.child("Caltemp").getValue(Float.class);
                                 if(temperature != null){
                                     String Temp = Float.toString(temperature);
-                                    temperature1.setText(Temp + "°C");
                                     temperature2.setText(Temp + "°C");
                                 }
                                 else{
                                     Float temperatureC = snapshot.child("caltemp").getValue(Float.class);
                                     if(temperature1 != null){
                                         String Temp = Float.toString(temperatureC);
-                                        temperature1.setText(Temp + "°C");
                                         temperature2.setText(Temp + "°C");
                                     }
                                 }

@@ -54,7 +54,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="55dp"
-                    android:text="35 °C"
+                    android:text="38°C"
                     android:textColor="#A3A4A7"
                     android:textSize="25sp" />
 
